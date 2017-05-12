@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using goedle_sdk;
 
 public class DisplayStatistics : MonoBehaviour {
 
@@ -30,6 +31,8 @@ public class DisplayStatistics : MonoBehaviour {
 	}
 	
 	void DisplayPlayerStatistics(){
+		GoedleAnalytics.track ("show.statistics");
+
 		underPowerUsageText.text = "Under power :  " + underPowerMin.ToString() + " minutes and " + underPowerSec.ToString() + " seconds" ;
 		correctPowerUsageText.text = "Correct power :  " + correctPowerMin.ToString() + " minutes and " + correctPowerSec.ToString() + " seconds" ;
 		overPowerUsageText.text = "Over power :  " + overPowerMin.ToString() + " minutes and " + overPowerSec.ToString() + " seconds" ;

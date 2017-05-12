@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using goedle_sdk;
 
 public class PauseGame : MonoBehaviour {
 	
@@ -21,11 +22,13 @@ public class PauseGame : MonoBehaviour {
 			prevSimulationSpeed = simulator.simulationSpeed;
 			simulator.simulationSpeed = 0;
 			text.enabled = true;	
+			GoedleAnalytics.track ("pause.simulation");
 		}
 		else if(gamePaused == true){
 			gamePaused = false;
 			simulator.simulationSpeed = prevSimulationSpeed;
 			text.enabled = false;
+			GoedleAnalytics.track ("resume.simulation");
 		}
 	}
 }

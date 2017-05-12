@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using goedle_sdk;
 
 public class ConfigurationMenu : MonoBehaviour {
 
@@ -67,10 +68,17 @@ public class ConfigurationMenu : MonoBehaviour {
 
 	public void EnableConfigMenu(){
 		menu.enabled = true;
+		GoedleAnalytics.track ("configure.open","OpenConfigurationPanel");
 	}
 
 	public void DisableConfigMenu(){
 		menu.enabled = false;
+		GoedleAnalytics.track ("configure.wind_speed", "max ", simulator.windMaxSpeed.ToString() );
+		GoedleAnalytics.track ("configure.wind_speed", "min ", simulator.windMinSpeed.ToString() );
+		GoedleAnalytics.track ("configure.power", "max ", simulator.powerRequirementsMax.ToString() );
+		GoedleAnalytics.track ("configure.power", "min ", simulator.powerRequirementsMin.ToString() );
+		GoedleAnalytics.track ("configure.simulation_speed", null, simulator.simulationSpeed.ToString() );
+		GoedleAnalytics.track ("configure.close", "CloseConfigurationPanel");
 	}
 	
 	public void SetwindMax(float max){

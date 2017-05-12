@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using goedle_sdk;
 
 public class TurbineSpawnManager : MonoBehaviour {
 
@@ -19,6 +20,7 @@ public class TurbineSpawnManager : MonoBehaviour {
 		
 		// shows if the spawn button is pressed. Used only in the simulation script and for optimization purposes.
 		if(numberOfTurbines < maxNumberOfTurbines){
+			GoedleAnalytics.track ("add.turbine");
 			buttonPressed = true;
 		}
 		//TODO: it is good to not have hard coded values in conditions and follow a more generic logic, but that must change when the all the levels finished.

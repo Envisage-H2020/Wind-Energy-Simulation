@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using goedle_sdk;
 
 public class PlayerStatistics : MonoBehaviour {
 
@@ -37,6 +38,7 @@ public class PlayerStatistics : MonoBehaviour {
 	or after 24 minutes have passed.
 	*/
 	public void EndSimulation(){
+		GoedleAnalytics.track ("end.simulation");
 		if(SceneManager.GetActiveScene().buildIndex != sceneCount - 1){  // if not the last scene
 			if(simulator.minutesCount >= 24 || endSimulation == true){
 				SceneManager.LoadScene(sceneCount - 1 ); // loads last scene
