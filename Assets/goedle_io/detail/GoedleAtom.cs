@@ -22,7 +22,8 @@ namespace goedle_sdk.detail
 		private int timezone;
 		private string event_id = null;
 		private int build_nr;
-
+		private string trait_key= null;
+		private string trait_value = null;
 
 		public GoedleAtom(string app_key, 
 			string user_id, 
@@ -54,7 +55,7 @@ namespace goedle_sdk.detail
 
 		}
 
-		public GoedleAtom(string app_key, string user_id, int ts, string event_name, string event_id, string event_value) {
+		public GoedleAtom(string app_key, string user_id, int ts, string event_name, string event_id, string event_value, string trait_key, string trait_value) {
 			this.app_key = app_key;
 			this.user_id = user_id; 
 			this.ts = ts;
@@ -62,7 +63,10 @@ namespace goedle_sdk.detail
 
 			if (!string.IsNullOrEmpty(event_value))
 				this.event_id = event_id;
-
+			if (!string.IsNullOrEmpty(trait_key))
+				this.trait_key = trait_key;
+				if (!string.IsNullOrEmpty(trait_value))
+					this.event_id = trait_value;
 			// This is true if event_value is NaN
 			if (!string.IsNullOrEmpty(event_value)) 
 				this.event_value = event_value;
@@ -87,6 +91,8 @@ namespace goedle_sdk.detail
 				goedleAtom.Add("event_id",this.event_id);
 			if (!string.IsNullOrEmpty(event_value))
 				goedleAtom.Add("event_value",this.event_value);
+			if (!string.IsNullOrEmpty(trait_key) && !string.IsNullOrEmpty(trait_value))
+				goedleAtom.Add(this.trait_key,this.trait_value);
 			return goedleAtom;
 		}
 	}

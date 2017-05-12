@@ -36,7 +36,7 @@ public class PlayerPersonalInfo : MonoBehaviour {
 	}
 	public void SchoolNameEntered(string text){
 		playerSchoolName = text;
-		GoedleAnalytics.identify ("company", playerSchoolName);
+		GoedleAnalytics.track ("group", playerSchoolName, null);
 		//TODO: "http" call can be entered here to retrieve the value.
 	}
 
