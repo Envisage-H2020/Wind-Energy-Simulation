@@ -95,13 +95,14 @@ namespace goedle_sdk
 		/// <param name="trait_key">for now only last_name and first_name is supported</param>
 		/// <param name="trait_value">the value of the key</param>
 
-		public static void identify(string trait_key, string trait_value)
+		public static void identify(string traitKey, string traitValue)
 		{
 			#if !DISABLE_GOEDLE
 			if (tracking_enabled)
-			instance.identify(trait_key, trait_value);
+				instance.track(null, null, null, traitKey, traitValue);
 			#endif
 		}
+
 		#region internal
 		static goedle_sdk.detail.GoedleAnalytics gio_interface;
 		private static goedle_sdk.detail.GoedleAnalytics instance

@@ -24,7 +24,8 @@ namespace goedle_sdk.detail
 				headers.Add("Content-Type", "application/json");
 				headers.Add("Authorization", pass[1]);
 				UnitySystemConsoleRedirector.Redirect();
-				Console.WriteLine(pass[0]);
+				// To Check Content before it is send
+				//Console.WriteLine(pass[0]);
 			byte[] pData = Encoding.UTF8.GetBytes(pass[0].ToCharArray());
 
 			WWW www = new WWW(GoedleConstants.TRACK_URL, pData, headers);

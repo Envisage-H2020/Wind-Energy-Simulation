@@ -55,22 +55,29 @@ namespace goedle_sdk.detail
 
 		}
 
-		public GoedleAtom(string app_key, string user_id, int ts, string event_name, string event_id, string event_value, string trait_key, string trait_value) {
+		public GoedleAtom(string app_key, 
+			string user_id, int ts, 
+			string event_name, 
+			string event_id, 
+			string event_value, 
+			string trait_key, 
+			string trait_value) {
+
+		
 			this.app_key = app_key;
 			this.user_id = user_id; 
 			this.ts = ts;
 			this.event_name = event_name;
-
-			if (!string.IsNullOrEmpty(event_value))
+			if (!string.IsNullOrEmpty(event_id))
 				this.event_id = event_id;
+			if (!string.IsNullOrEmpty(event_value))
+				this.event_value = event_value;
 			if (!string.IsNullOrEmpty(trait_key))
 				this.trait_key = trait_key;
 				if (!string.IsNullOrEmpty(trait_value))
-					this.event_id = trait_value;
+					this.trait_value = trait_value;
+			
 			// This is true if event_value is NaN
-			if (!string.IsNullOrEmpty(event_value)) 
-				this.event_value = event_value;
-
 			this.timezone = Int32.MaxValue;
 		}
 
@@ -84,17 +91,16 @@ namespace goedle_sdk.detail
 			goedleAtom.Add("event",this.event_name);
 			goedleAtom.Add("build_nr",this.build_nr);
 
-			//ONLAUNCH
 			if (this.timezone != Int32.MaxValue)
 				goedleAtom.Add("timezone",this.timezone);
 			if (!string.IsNullOrEmpty(event_id))
 				goedleAtom.Add("event_id",this.event_id);
 			if (!string.IsNullOrEmpty(event_value))
 				goedleAtom.Add("event_value",this.event_value);
+	
 			if (!string.IsNullOrEmpty(trait_key) && !string.IsNullOrEmpty(trait_value))
 				goedleAtom.Add(this.trait_key,this.trait_value);
 			return goedleAtom;
 		}
 	}
 }
-
