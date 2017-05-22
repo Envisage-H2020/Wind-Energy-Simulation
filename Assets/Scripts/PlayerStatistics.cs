@@ -38,9 +38,10 @@ public class PlayerStatistics : MonoBehaviour {
 	or after 24 minutes have passed.
 	*/
 	public void EndSimulation(){
-		GoedleAnalytics.track ("end.simulation");
+		
 		if(SceneManager.GetActiveScene().buildIndex != sceneCount - 1){  // if not the last scene
 			if(simulator.minutesCount >= 24 || endSimulation == true){
+				GoedleAnalytics.track ("end.simulation");
 				SceneManager.LoadScene(sceneCount - 1 ); // loads last scene
 				Resources.UnloadUnusedAssets(); //removes unused assets to free memory
 			}

@@ -22,10 +22,10 @@ namespace goedle_sdk.detail
 
 		public void track_launch ()
 		{
-			track (GoedleConstants.EVENT_NAME_INIT, null, null, true);
+			track (GoedleConstants.EVENT_NAME_INIT, null, null, true, null, null);
 		}
 
-		public void track (string event_name, string event_id, string event_value, bool launch)
+		public void track (string event_name, string event_id, string event_value, bool launch, string trait_key, string trait_value)
 		{
 			GoedleHttpClient outer = new GoedleHttpClient ();
 			string[] pass = null;
@@ -36,7 +36,7 @@ namespace goedle_sdk.detail
 			if (launch == true) {
 				rt = new GoedleAtom (app_key, this.user_id, ts, event_name, event_id, event_value, timezone, GoedleConstants.BUILD_NR);
 			} else {
-				rt = new GoedleAtom (app_key, this.user_id, ts, event_name, event_id, event_value, null, null);
+				rt = new GoedleAtom (app_key, this.user_id, ts, event_name, event_id, event_value, trait_key, trait_value);
 			}
 			if (rt == null) {
 				Console.Write ("Data Object is None, there must be an error in the SDK!");
@@ -48,7 +48,7 @@ namespace goedle_sdk.detail
 
 		public void track (string event_name)
 		{
-			track (event_name, null, null, false);
+			track (event_name, null, null, false, null, null);
 		}
 
 
@@ -56,30 +56,22 @@ namespace goedle_sdk.detail
 
 		public void track (string event_name, string event_id)
 		{
-			track (event_name, event_id, null, false);
+			track (event_name, event_id, null, false, null, null);
 		}
 
 
 		public void track (string event_name, string event_id, string event_value)
 		{
-			track (event_name, event_id, event_value, false);
+			track (event_name, event_id, event_value, false, null, null);
 
 		}
 
-		public void identify (string trait_key, string trait_value)
+		public void track (string event_name, string event_id, string event_value, string trait_key, string trait_value)
 		{
-			GoedleHttpClient outer = new GoedleHttpClient ();
-			string[] pass = null;
-			int ts = getTimeStamp ();
-			GoedleAtom rt = null;
-			rt = new GoedleAtom (app_key, this.user_id, ts, "identify", null, null, trait_key, trait_value);
-			if (rt == null) {
-				Console.Write ("Data Object is None, there must be an error in the SDK!");
-			} else {
-				pass = encodeToUrlParameter (rt.getGoedleAtomDictionary ());
-			}
-			outer.send (pass);
+			track ("identify", null, null, false, trait_key, trait_value );
+
 		}
+
 
 		private string[] encodeToUrlParameter (Dictionary<string, object> goedleAtom)
 		{
