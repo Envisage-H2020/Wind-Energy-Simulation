@@ -26,7 +26,6 @@ public class PlayerPersonalInfo : MonoBehaviour {
 	public void NameEntered(string text){
 		playerName = text;
 		GoedleAnalytics.identify ("first_name", playerName);
-
 		//TODO: "http" call can be entered here to retrieve the value.
 	}
 	public void SurnameEntered(string text){

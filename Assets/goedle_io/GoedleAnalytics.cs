@@ -40,12 +40,12 @@ namespace goedle_sdk
         [Tooltip("The api_key of the goedle.io project.")]
         public string api_key = "";
         [Tooltip("The api_key of the goedle.io project.")]
-        public string disable = "";
+        public string disable = "To enable look at tracking_enabled field";
         #endregion
         /*! \endcond */
 
 
-
+		public static bool tracking_enabled = false;
 
         /// <summary>
         /// Tracks an event.
@@ -113,7 +113,7 @@ namespace goedle_sdk
 			}
 		}
 
-        static bool tracking_enabled = true;
+        
 
         void Awake()
         {
