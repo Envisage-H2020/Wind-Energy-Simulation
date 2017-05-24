@@ -270,7 +270,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 29297847}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Handle Slide Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -664,7 +664,7 @@ GameObject:
   m_Component:
   - component: {fileID: 180934241}
   - component: {fileID: 180934242}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: slider_wind_min
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -759,7 +759,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 204196752}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Sliding Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -796,7 +796,7 @@ GameObject:
   - component: {fileID: 207489151}
   - component: {fileID: 207489150}
   - component: {fileID: 207489149}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Scrollbar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -979,7 +979,7 @@ GameObject:
   - component: {fileID: 316621949}
   - component: {fileID: 316621951}
   - component: {fileID: 316621950}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Item Checkmark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1123,7 +1123,7 @@ GameObject:
   - component: {fileID: 322786997}
   - component: {fileID: 322786999}
   - component: {fileID: 322786998}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1261,7 +1261,7 @@ GameObject:
   - component: {fileID: 353617451}
   - component: {fileID: 353617453}
   - component: {fileID: 353617452}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: txt_label_max_wind
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1409,7 +1409,7 @@ GameObject:
   - component: {fileID: 394588253}
   - component: {fileID: 394588255}
   - component: {fileID: 394588254}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: txt_hint_power_min
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1491,7 +1491,7 @@ GameObject:
   - component: {fileID: 417904529}
   - component: {fileID: 417904531}
   - component: {fileID: 417904530}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: txt_label_min_power
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1683,7 +1683,7 @@ GameObject:
   - component: {fileID: 455039467}
   - component: {fileID: 455039466}
   - component: {fileID: 455039465}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: bt_close_config_panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1704,10 +1704,10 @@ RectTransform:
   m_Father: {fileID: 725840566}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -16, y: 401}
-  m_SizeDelta: {x: 33, y: 22}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -14, y: -14}
+  m_SizeDelta: {x: 28, y: 28}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &455039465
 MonoBehaviour:
@@ -1749,7 +1749,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2013537177}
-        m_MethodName: DisableConfigMenu
+        m_MethodName: hideConfigMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1804,7 +1804,7 @@ GameObject:
   - component: {fileID: 488525229}
   - component: {fileID: 488525231}
   - component: {fileID: 488525230}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2064,7 +2064,7 @@ GameObject:
   - component: {fileID: 546413503}
   - component: {fileID: 546413505}
   - component: {fileID: 546413504}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2281,7 +2281,7 @@ GameObject:
   m_Component:
   - component: {fileID: 584174024}
   - component: {fileID: 584174025}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: slider_power_min
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2836,7 +2836,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 648319115}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Content
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3235,7 +3235,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 700538142}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Handle Slide Area (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3269,7 +3269,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 712599976}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Handle Slide Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3305,7 +3305,7 @@ GameObject:
   - component: {fileID: 725840566}
   - component: {fileID: 725840568}
   - component: {fileID: 725840567}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: config_menu_panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3457,7 +3457,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2013537177}
-        m_MethodName: EnableConfigMenu
+        m_MethodName: showConfigMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3516,7 +3516,7 @@ GameObject:
   - component: {fileID: 773524737}
   - component: {fileID: 773524739}
   - component: {fileID: 773524738}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: txt_label_wind_values
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3810,7 +3810,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 879688880}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4141,7 +4141,7 @@ GameObject:
   m_Component:
   - component: {fileID: 963897042}
   - component: {fileID: 963897043}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: slider_wind_max
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4241,7 +4241,7 @@ GameObject:
   m_Component:
   - component: {fileID: 990544320}
   - component: {fileID: 990544321}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: slider_power_max
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4343,7 +4343,7 @@ GameObject:
   - component: {fileID: 1015998425}
   - component: {fileID: 1015998427}
   - component: {fileID: 1015998426}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4410,7 +4410,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1016809392}
   - component: {fileID: 1016809393}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4637,7 +4637,7 @@ GameObject:
   - component: {fileID: 1043070980}
   - component: {fileID: 1043070982}
   - component: {fileID: 1043070981}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4686,7 +4686,7 @@ MonoBehaviour:
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 1
     m_MaxSize: 40
     m_Alignment: 3
     m_AlignByGeometry: 0
@@ -4823,7 +4823,7 @@ GameObject:
   - component: {fileID: 1090159132}
   - component: {fileID: 1090159134}
   - component: {fileID: 1090159133}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Item Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4895,7 +4895,7 @@ GameObject:
   - component: {fileID: 1103850948}
   - component: {fileID: 1103850950}
   - component: {fileID: 1103850949}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Item Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4973,7 +4973,7 @@ GameObject:
   - component: {fileID: 1105850155}
   - component: {fileID: 1105850157}
   - component: {fileID: 1105850156}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5041,7 +5041,7 @@ GameObject:
   - component: {fileID: 1108407026}
   - component: {fileID: 1108407028}
   - component: {fileID: 1108407027}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: txt_label_min_wind
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5116,7 +5116,8 @@ GameObject:
   - component: {fileID: 1108765963}
   - component: {fileID: 1108765962}
   - component: {fileID: 1108765961}
-  m_Layer: 2
+  - component: {fileID: 1108765965}
+  m_Layer: 0
   m_Name: Canvas(ConfigMenu)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5199,6 +5200,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!225 &1108765965
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1108765960}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1130027704
 GameObject:
   m_ObjectHideFlags: 0
@@ -5209,7 +5221,7 @@ GameObject:
   - component: {fileID: 1130027705}
   - component: {fileID: 1130027707}
   - component: {fileID: 1130027706}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5331,7 +5343,7 @@ GameObject:
   - component: {fileID: 1159533866}
   - component: {fileID: 1159533868}
   - component: {fileID: 1159533867}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5397,7 +5409,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1162307025}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Handle Slide Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5433,7 +5445,7 @@ GameObject:
   - component: {fileID: 1163875437}
   - component: {fileID: 1163875439}
   - component: {fileID: 1163875438}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: txt_hint_wind_max
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5747,7 +5759,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1224232093}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5783,7 +5795,7 @@ GameObject:
   - component: {fileID: 1240390720}
   - component: {fileID: 1240390722}
   - component: {fileID: 1240390721}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5919,7 +5931,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1266885581}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6122,7 +6134,7 @@ GameObject:
   - component: {fileID: 1320213642}
   - component: {fileID: 1320213641}
   - component: {fileID: 1320213640}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Viewport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6418,7 +6430,7 @@ GameObject:
   - component: {fileID: 1450270611}
   - component: {fileID: 1450270613}
   - component: {fileID: 1450270612}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: txt_label_max_power
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6498,7 +6510,7 @@ GameObject:
   - component: {fileID: 1478920228}
   - component: {fileID: 1478920230}
   - component: {fileID: 1478920229}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6566,7 +6578,7 @@ GameObject:
   - component: {fileID: 1479431389}
   - component: {fileID: 1479431391}
   - component: {fileID: 1479431390}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6903,7 +6915,7 @@ GameObject:
   - component: {fileID: 1523475733}
   - component: {fileID: 1523475732}
   - component: {fileID: 1523475731}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Template
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6927,7 +6939,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -15, y: -0.9}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 150}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1523475731
@@ -6973,7 +6985,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -7004,7 +7016,7 @@ GameObject:
   - component: {fileID: 1528869856}
   - component: {fileID: 1528869858}
   - component: {fileID: 1528869857}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: txt_label_power_req
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7078,7 +7090,7 @@ GameObject:
   - component: {fileID: 1534239908}
   - component: {fileID: 1534239910}
   - component: {fileID: 1534239909}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7438,7 +7450,7 @@ GameObject:
   - component: {fileID: 1610590855}
   - component: {fileID: 1610590857}
   - component: {fileID: 1610590856}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: txt_label_sim_speed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7536,7 +7548,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 1396.6, y: 713}
+  m_AnchoredPosition: {x: 1282.6, y: 775.69}
   m_SizeDelta: {x: 85, y: 32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1620561118
@@ -7634,7 +7646,7 @@ GameObject:
   - component: {fileID: 1665215529}
   - component: {fileID: 1665215531}
   - component: {fileID: 1665215530}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: txt_hint_power_max
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7968,7 +7980,7 @@ GameObject:
   - component: {fileID: 1708995778}
   - component: {fileID: 1708995780}
   - component: {fileID: 1708995779}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: txt_hint_wind_min
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8042,7 +8054,7 @@ GameObject:
   - component: {fileID: 1709039246}
   - component: {fileID: 1709039248}
   - component: {fileID: 1709039247}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8316,7 +8328,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1807441871}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Handle Slide Area (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8352,7 +8364,7 @@ GameObject:
   - component: {fileID: 1813227957}
   - component: {fileID: 1813227959}
   - component: {fileID: 1813227958}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: text_close_config_panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8398,20 +8410,18 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
-    m_FontStyle: 0
+    m_FontSize: 20
+    m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 40
+    m_MinSize: 0
+    m_MaxSize: 76
     m_Alignment: 4
-    m_AlignByGeometry: 0
+    m_AlignByGeometry: 1
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'x
-
-'
+  m_Text: x
 --- !u!222 &1813227959
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8426,7 +8436,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1814343677}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Handle Slide Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8705,7 +8715,7 @@ GameObject:
   - component: {fileID: 1886680689}
   - component: {fileID: 1886680691}
   - component: {fileID: 1886680690}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8841,7 +8851,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1921301020}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8878,7 +8888,7 @@ GameObject:
   - component: {fileID: 1991290800}
   - component: {fileID: 1991290799}
   - component: {fileID: 1991290798}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: dropdown_sim_speed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8903,8 +8913,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 15.19, y: -138.02}
-  m_SizeDelta: {x: 88.38, y: 18.2}
+  m_AnchoredPosition: {x: 27.578, y: -138.02}
+  m_SizeDelta: {x: 123.25, y: 32.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1991290798
 MonoBehaviour:
@@ -8926,7 +8936,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.84160006, g: 0.81660897, b: 0.86764705, a: 1}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0}
     m_PressedColor: {r: 0.8455882, g: 0.8455882, b: 0.8455882, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -9015,7 +9025,7 @@ GameObject:
   - component: {fileID: 2003333995}
   - component: {fileID: 2003333997}
   - component: {fileID: 2003333996}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9398,7 +9408,7 @@ GameObject:
   - component: {fileID: 2054637156}
   - component: {fileID: 2054637158}
   - component: {fileID: 2054637157}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9466,7 +9476,7 @@ GameObject:
   - component: {fileID: 2072939748}
   - component: {fileID: 2072939750}
   - component: {fileID: 2072939749}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
