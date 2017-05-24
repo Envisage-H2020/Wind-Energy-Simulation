@@ -59,7 +59,7 @@ public class Simulation : MonoBehaviour {
 	private int[] singlePowerOutput = {0,0,50,100,200,400,700,1000,1500,2000,2300,2400,2450,2500,2500,2500,2500,2500,2500,2500,2500};
     private int totalPowerOutput;
 	public TurbineSpawnManager spawnManager;
-	public string powerUsage = "-Under power" ; //TODO : maybe this can be changed to a enum, but it will less readable to the next developer that gets the source code.
+	public string powerUsage = "Under power" ; //TODO : maybe this can be changed to a enum, but it will less readable to the next developer that gets the source code.
     public float income = 8;
 
 	// The colors for the power usage text.
@@ -231,7 +231,7 @@ public class Simulation : MonoBehaviour {
     public IEnumerator calculateAddedPower()
     {
 		int addedAmount =  singlePowerOutput[currentWindSpeed];
-		powerOutputSideText.text = " + " + addedAmount.ToString();
+		powerOutputSideText.text = " + " + ((float)addedAmount/1000).ToString();
 		powerOutputSideText.enabled = true;
 		powerOutputsideImage.enabled = true;
 		yield return new WaitForSeconds(2f);
@@ -242,7 +242,7 @@ public class Simulation : MonoBehaviour {
 	public IEnumerator calculateSubstractedPower()
     {
 		int substractedAmount =  singlePowerOutput[currentWindSpeed];
-		powerOutputSideText.text = " - " + substractedAmount.ToString();
+		powerOutputSideText.text = " - " + ((float)substractedAmount/1000).ToString();
 		powerOutputSideText.enabled = true;
 		powerOutputsideImage.enabled = true;
 		yield return new WaitForSeconds(2f);
@@ -256,10 +256,10 @@ public class Simulation : MonoBehaviour {
 	=====================================
 	*/
     void incomeCalculation(){
-		if(string.Equals(powerUsage,"-Under power")){
+		if(string.Equals(powerUsage,"Under power")){
 			income += 0.5f;
 		}
-		else if(string.Equals(powerUsage,"-Correct power")){
+		else if(string.Equals(powerUsage,"Correct power")){
 			income += 1.5f;
 		}
 		DisplayText("income");
@@ -272,17 +272,19 @@ public class Simulation : MonoBehaviour {
 	*/
 	void CalculatePowerUsage(){
 		calculateOutputPower();
+
 		int localpowerDiff = totalPowerOutput - currentPowerReqs;
+
 		if (localpowerDiff < 0){
-			powerUsage = "-Under power";
+			powerUsage = "Under power";
 			powerUsageText.color = red;
 		}
 		else if((totalPowerOutput - currentPowerReqs) > singleTurbinePower){
-			powerUsage = "-Over power";
+			powerUsage = "Over power";
 			powerUsageText.color = blue;
 		}
 		else {
-			powerUsage = "-Correct power";
+			powerUsage = "Correct power";
 			powerUsageText.color = green;
 		}
 		DisplayText("powerUsage");
@@ -299,10 +301,10 @@ public class Simulation : MonoBehaviour {
 			windText.text = currentWindSpeed.ToString();
 		}
 		else if(string.Equals(whatTypeToDisplay,"powerOutput")){
-			powerOutputText.text = totalPowerOutput.ToString();
+			powerOutputText.text = ((float)totalPowerOutput/1000).ToString("0.0");
 		}
 		else if(string.Equals(whatTypeToDisplay,"powerReqs")){
-			powerReqText.text = currentPowerReqs.ToString();
+			powerReqText.text = ((float)currentPowerReqs/1000).ToString("0.0");
 		}
 		else if(string.Equals(whatTypeToDisplay,"powerUsage")){
 			powerUsageText.text = powerUsage;

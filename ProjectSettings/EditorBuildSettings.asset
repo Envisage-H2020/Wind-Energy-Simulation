@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/scenes/S_Help.unity
     guid: d0acd6d07b972374a9aa5edc147ce78a
   - enabled: 1
-    path: Assets/scenes/SimulationScene(plane).unity
+    path: Assets/scenes/S_1.unity
     guid: 920976037e34fb3479ef3be2b25d32bc
   - enabled: 1
     path: Assets/scenes/EndScene.unity

@@ -32,10 +32,10 @@ public class ChangeBuildingsMaterial : MonoBehaviour {
 	void ChangeMat(){
 
 		if(minimapLayer == true){
-			if(string.Equals(simulator.powerUsage,"-Under power")){
+			if(string.Equals(simulator.powerUsage,"Under power")){
 				rend.material = redMat;
 			}
-			else if(string.Equals(simulator.powerUsage,"-Correct power")){
+			else if(string.Equals(simulator.powerUsage,"Correct power")){
 				rend.material = defaultMat;
 			}
 			else {
