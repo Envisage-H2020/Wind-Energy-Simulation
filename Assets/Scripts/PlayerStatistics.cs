@@ -9,21 +9,19 @@ public class PlayerStatistics : MonoBehaviour {
     public static int correctPowerSec;
     public static int overPowerSec;
     public bool endSimulation = false;
-    private int sceneCount;
-
+  
     // Use this for initialization
     void Start () {
-		sceneCount = SceneManager.sceneCountInBuildSettings;
 		endSimulation = false;
-		if(SceneManager.GetActiveScene().buildIndex != sceneCount - 1){ // if not the last scene
+		if(!SceneManager.GetActiveScene().name.Equals("S_Reward")){ // if not the last scene
 			simulator = GameObject.FindGameObjectWithTag("Simulator").GetComponent<Simulation>();
 			InitializeCountValues();
-			InvokeRepeating("CalculatePowerUsageStatistics",60.0f,1.0f);
+			InvokeRepeating("CalculatePowerUsageStatistics", 0.0f, 1.0f);
 		}
 	}
 
 	void Update(){
-		EndSimulation();
+		checkEndSimulation();
 	}
 
 	void InitializeCountValues(){
@@ -37,11 +35,11 @@ public class PlayerStatistics : MonoBehaviour {
 	Stops the simulation and loads the end scene in the game. This can be achieved either by clicking on the exit button,
 	or after 24 minutes have passed.
 	*/
-	public void EndSimulation(){
-		GoedleAnalytics.track ("end.simulation");
-		if(SceneManager.GetActiveScene().buildIndex != sceneCount - 1){  // if not the last scene
+	public void checkEndSimulation(){
+		if(!SceneManager.GetActiveScene().name.Equals("S_Reward")){  // if not the last scene
 			if(simulator.minutesCount >= 24 || endSimulation == true){
-				SceneManager.LoadScene(sceneCount - 1 ); // loads last scene
+				GoedleAnalytics.track ("end.simulation");
+				SceneManager.LoadScene("S_Reward" ); // loads last scene
 				Resources.UnloadUnusedAssets(); //removes unused assets to free memory
 			}
 		}
@@ -57,11 +55,11 @@ public class PlayerStatistics : MonoBehaviour {
 	These values are later used in the end scene to calculate and display the usage of the wind farm, concerning the time spent in each scenario. 
 	*/
  	void CalculatePowerUsageStatistics(){
-		if(SceneManager.GetActiveScene().buildIndex != sceneCount - 1){
-			if(string.Equals(simulator.powerUsage,"-Under power")){
+		if( !SceneManager.GetActiveScene().name.Equals("S_Reward") ){
+			if(string.Equals(simulator.powerUsage,"Under power")){
 				underPowerSec++;
 			}
-			else if(string.Equals(simulator.powerUsage,"-Correct power")){
+			else if(string.Equals(simulator.powerUsage,"Correct power")){
 				correctPowerSec++;
 			}
 			else {
@@ -71,7 +69,5 @@ public class PlayerStatistics : MonoBehaviour {
 	}
 
 	void GetPlayerInfo(){
-		
 	}
-
 }

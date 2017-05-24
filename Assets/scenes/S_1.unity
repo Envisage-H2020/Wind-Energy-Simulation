@@ -8305,7 +8305,7 @@ MonoBehaviour:
   powerRequirementsMin: 1000
   powerRequirementsMax: 24000
   spawnManager: {fileID: 58763119}
-  powerUsage: -Under power
+  powerUsage: Under power
   income: 3
 --- !u!4 &1788852838
 Transform:
