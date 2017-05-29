@@ -44,7 +44,7 @@ public class ConfigurationMenu : MonoBehaviour {
 	void Update () {
 		/*check if user tries to give not acceptable values(min > max)
 		and block his action */
-		if(menu.enabled == true){
+		if(menu.GetComponent<CanvasGroup> ().alpha > 0f){
 			ValidateSliderValues();	
 			SetDefautValueToSlider(windMinSlider,simulator.windMinSpeed);
 			SetDefautValueToSlider(windMaxSlider,simulator.windMaxSpeed);
@@ -67,12 +67,16 @@ public class ConfigurationMenu : MonoBehaviour {
 	}
 
 	public void EnableConfigMenu(){
-		menu.enabled = true;
+		//menu.enabled = true;
+		menu.GetComponent<CanvasGroup> ().alpha = 1f;
 		GoedleAnalytics.track ("configure.open","OpenConfigurationPanel");
 	}
 
 	public void DisableConfigMenu(){
-		menu.enabled = false;
+		//menu.enabled = false;
+
+		menu.GetComponent<CanvasGroup> ().alpha = 0f;
+
 		GoedleAnalytics.track ("configure.wind_speed", "max ", simulator.windMaxSpeed.ToString() );
 		GoedleAnalytics.track ("configure.wind_speed", "min ", simulator.windMinSpeed.ToString() );
 		GoedleAnalytics.track ("configure.power", "max ", simulator.powerRequirementsMax.ToString() );
