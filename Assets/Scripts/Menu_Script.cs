@@ -20,6 +20,10 @@ public class Menu_Script : MonoBehaviour {
 		SceneManager.LoadScene("S_Credits");
 	}
 
+	public void onClick_LoadSceneSelectorScene(){
+		SceneManager.LoadScene("S_SceneSelector");
+	}
+
 	public void onClick_LoadMainMenuScene(){
 		SceneManager.LoadScene("S_MainMenu");
 	}
