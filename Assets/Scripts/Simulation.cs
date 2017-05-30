@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Simulation : MonoBehaviour {
+
+
+	public GameObject myTerrain;
+
 	[Header ("Text fields")]
 	public Text windText;
 	public Text timeText;
@@ -68,6 +72,10 @@ public class Simulation : MonoBehaviour {
 	private Color blue;
 
     void Start(){
+
+
+		myTerrain = GameObject.Find ("s1_Terrain");
+
 		powerOutputSideText.enabled = false;
 		powerOutputsideImage.enabled = false;
 		//the icons that display wind change
@@ -102,6 +110,19 @@ public class Simulation : MonoBehaviour {
 			StartCoroutine(calculateAddedPower());
 			spawnManager.buttonPressed = false;
 		}
+
+
+
+//		if (Input (0)) {
+//			RaycastHit hit;
+//			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+//			if (myTerrain.GetComponent<Collider>().Raycast (ray, out hit, Mathf.Infinity)) {
+//				transform.position = hit.point;
+//				// Debug.Log (transform.position.x + " " +  transform.position.y + " " + transform.position.z);
+//			}
+//		}
+
+
 	}
 
 	//it is not called every frame, but every fixed frame (helps performance).
