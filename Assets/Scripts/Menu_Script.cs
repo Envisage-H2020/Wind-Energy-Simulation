@@ -12,8 +12,8 @@ public class Menu_Script : MonoBehaviour {
 	private string playerSchoolName;
 
 
-	public void onClick_StartScene(int iScene){
-		SceneManager.LoadScene("S_" + iScene);
+	public void onClick_LoadScene(string sceneName){
+		SceneManager.LoadScene(sceneName);
 	}
 
 	public void onClick_LoadCredsScene(){
