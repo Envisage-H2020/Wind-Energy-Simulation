@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjectPooler : MonoBehaviour {
+	
 	public static ObjectPooler current;
 	public GameObject pooledObject;
 	public int pooledAmount = 11;
