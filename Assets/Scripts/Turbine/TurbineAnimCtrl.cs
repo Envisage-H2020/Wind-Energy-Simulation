@@ -4,27 +4,13 @@ using UnityEngine;
 
 public class TurbineAnimCtrl : MonoBehaviour {
 	Animator animator;
-	public bool isRotating = true; //defines if the turbine is rotating or not
+	public bool isRotating = true;
 
-    // Use this for initialization
     void Start () {
 		animator = GetComponent<Animator>();
-		
-		/*  
-		The turbine game object uses the animator component to have movement (rotate).
-		In the animator window there are two states in which the animatios takes place.
-		- Idle where there is NO rotation
-		- WindTurbineRotate where there is rotation.
-		To transit between this to states we use the "Rotate" parameter, which is defined
-		below as true which means that the turbine will rotate when it first appears in the game.   
-		*/
 		animator.SetBool("Rotate",true);
 	}
 
-	/* 
-	Changes the parameter value in the animator window, 
-	and the animation state changes to idle 
-	*/
 	public void DisableRotation(){  
 		animator.SetBool("Rotate",false);
 		isRotating = false;
@@ -35,27 +21,7 @@ public class TurbineAnimCtrl : MonoBehaviour {
 		isRotating = true;
 	}
 
-	/*
-	Based on the speed of the wind the speed of the animation is
-	also changed. To do that we use a parameter in the windTurbineRotate animation
-	and change it accordigly. 
-	*/
 	public void SetRotationSpeed(int windspeed){
-		if(windspeed > 18){
-			animator.SetFloat("speedMultiplier",1.0f);
-		}
-		else if(windspeed >16 && windspeed <18){
-			animator.SetFloat("speedMultiplier",0.9f);
-		}
-		else if(windspeed <= 16 && windspeed > 8 ){
-			animator.SetFloat("speedMultiplier",0.8f);
-		}
-		else if(windspeed <=8 && windspeed > 5 ){
-			animator.SetFloat("speedMultiplier",0.75f);	
-		}
-		else{
-			animator.SetFloat("speedMultiplier",0.65f);
-		}
+		animator.SetFloat("speedMultiplier", (float) (windspeed) * (float) GameObject.Find("simulator").GetComponent<Simulation>().simulationSpeed / 20 );
 	}
-
 }

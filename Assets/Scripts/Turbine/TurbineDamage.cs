@@ -34,21 +34,23 @@ public class TurbineDamage : MonoBehaviour {
  	=====================================
 	*/
 	void CalculateDamagePropability(){
+
 		if(simulator.minutesCount >= damageStartTime  &&  turbine.IsRotating() == true && turbine.IsDamaged() == false
 			&& TurbineController.damagedTurbines <= 4){
 
 			propabilityMultiplier = Random.Range(0.0f,1.0f);
 			turbineUsage = 0.0f;
-			if( string.Compare(simulator.powerUsage,"-Over power") == 0 ){
+			if( string.Compare(simulator.powerUsage,"Over power") == 0 ){
 				turbineUsage = 1.3f;
 			}
-			else if(string.Compare(simulator.powerUsage,"-Correct power") == 0 ){
+			else if(string.Compare(simulator.powerUsage,"Correct power") == 0 ){
 				turbineUsage = 1.0f;
 			}
 			else {
 				turbineUsage = 0.0f;
 			}
 			float damagePropability = turbineUsage * propabilityMultiplier;
+
 			if(damagePropability > 0.85){
 				damageTurbine();
 			} 

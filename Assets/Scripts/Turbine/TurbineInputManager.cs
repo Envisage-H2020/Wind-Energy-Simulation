@@ -16,6 +16,9 @@ public class TurbineInputManager : MonoBehaviour {
 	private Vector2 canvasPos;
 
     void Start(){
+		PopUpCanvas.enabled = true;
+		PopUpCanvas.gameObject.SetActive (true);
+
 		turbine = GetComponent<TurbineController>();
 		outliner = GetComponentInChildren<HighlightObject>();
 		InitializePopUpText();
@@ -27,7 +30,6 @@ public class TurbineInputManager : MonoBehaviour {
 			HighlightTurbine(turbine.IsDamaged());
 		}
 	}
-
 
 	//when user clicks the turbine.
 	void OnMouseDown () {
@@ -51,12 +53,10 @@ public class TurbineInputManager : MonoBehaviour {
 	
 	//when mouse is hovered over a wind turbine the turbine is highlighted.
 	void HighlightTurbine(bool isDamaged){
-		if(isDamaged == false){
+		if(isDamaged == false)
 			outliner.SetUnDamagedMat(displayPopUpText);	
-		}
-		else{
+		else
 			outliner.SetDamagedMat(displayPopUpText);
-		}
 	}
 
 	//when mouse is over a wind turbine without being clicked.
@@ -91,7 +91,6 @@ public class TurbineInputManager : MonoBehaviour {
 			else if(turbine.IsRotating() == false && turbine.IsDamaged() == false){
 				popUpText.color = Color.blue;
 				popUpText.text = "Turn on";
-				
 			}
 			else {
 				popUpText.text = "repair";

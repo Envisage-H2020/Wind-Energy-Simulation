@@ -8,7 +8,7 @@ public class TurbineController : MonoBehaviour {
 	//dependacies of other scripts
 	private TurbineAnimCtrl turbineAnim;
 	private TurbineDamage turbineDmg;
-    private TurbineSpawnManager turbineSpawner;
+    private SpawnManager turbineSpawner;
 	private TurbineInputManager inputManager;
 	private TurbineRepair repair;
 	private Simulation simulator;
@@ -23,19 +23,14 @@ public class TurbineController : MonoBehaviour {
 		turbineAnim = GetComponentInChildren<TurbineAnimCtrl>();
 		turbineDmg = GetComponent<TurbineDamage>();
 		repair = GetComponent<TurbineRepair>();
-		turbineSpawner = GameObject.FindGameObjectWithTag("Spawner").GetComponent<TurbineSpawnManager>();
+		turbineSpawner = GameObject.FindGameObjectWithTag("Spawner").GetComponent<SpawnManager>();
 		simulator = GameObject.FindGameObjectWithTag("Simulator").GetComponent<Simulation>();
 		gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<PauseGame>();
 	}
 
-
-	//updates every frame (do not insert callbacks without conditions, caused the will be called every frame and will decrease perfromance).
 	void Update(){
-		//checks if game is paused or not
-		if(gameManager.gamePaused == true){
+		if(gameManager.gamePaused == true)
 			PauseTurbine(gameManager.gamePaused);		
-		}
-
 		else{
 			if(scriptsEnabled == false) UnPauseTurbine(gameManager.gamePaused);
 			
@@ -72,13 +67,6 @@ public class TurbineController : MonoBehaviour {
 			lowWindDisabled = false;
 	}
 
-	public bool IsRotating(){
-		return turbineAnim.isRotating; 	
-	}
-
-	public bool IsDamaged(){
-		return turbineDmg.isDamaged;
-	}
 
 	public void setDamage( bool isDamaged){
 		turbineDmg.isDamaged = isDamaged;
@@ -86,16 +74,14 @@ public class TurbineController : MonoBehaviour {
 
 	public void repairTurbine(){
 		//decreases total income
-		if(simulator.income - 1 >= 0){
+		if(simulator.income >= 1){
 			simulator.income--;
 			repair.turbineRepair();
 			damagedTurbines--;
 		}
 	}
 
-	public bool isRepaired(){
-	 	return repair.isRepaired;
-	}
+
 	public void setRepair(bool repairBool){
 		repair.isRepaired = repairBool;
 	}
@@ -116,13 +102,6 @@ public class TurbineController : MonoBehaviour {
 		turbineSpawner.numberOfTurbinesOperating++;
 	}
 
-	public int getTotalNumberOfTurbines(){
-		return turbineSpawner.numberOfTurbines;	
-	}
-
-	public int getNumberOfTurbinesOperating(){
-		return turbineSpawner.numberOfTurbinesOperating;	
-	}
 
 
 	//disables all scripts if game is paused
@@ -159,6 +138,27 @@ public class TurbineController : MonoBehaviour {
 		}
 	}
 
-	
+
+	/*--------- Auxiliary Gets ------------*/
+
+	public bool IsRotating(){
+		return turbineAnim.isRotating; 	
+	}
+
+	public bool IsDamaged(){
+		return turbineDmg.isDamaged;
+	}
+
+	public bool isRepaired(){
+		return repair.isRepaired;
+	}
+
+	public int getTotalNumberOfTurbines(){
+		return turbineSpawner.numberOfTurbines;	
+	}
+
+	public int getNumberOfTurbinesOperating(){
+		return turbineSpawner.numberOfTurbinesOperating;	
+	}
 
 }

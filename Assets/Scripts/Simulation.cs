@@ -43,7 +43,7 @@ public class Simulation : MonoBehaviour {
 	private float startTime;
 	public float minutesCount;
 	private float seconds;
-	public int simulationSpeed = 2;
+	public int simulationSpeed = 1;
 	private float time;
 	private string minutes;
 	private string secondstr;
@@ -62,7 +62,8 @@ public class Simulation : MonoBehaviour {
 	======================================*/
 	private int[] singlePowerOutput = {0,0,50,100,200,400,700,1000,1500,2000,2300,2400,2450,2500,2500,2500,2500,2500,2500,2500,2500};
     private int totalPowerOutput;
-	public TurbineSpawnManager spawnManager;
+	private int prevtotalPowerOutput;
+	public SpawnManager spawnManager;
 	public string powerUsage = "Under power" ; //TODO : maybe this can be changed to a enum, but it will less readable to the next developer that gets the source code.
     public float income = 8;
 
@@ -73,6 +74,7 @@ public class Simulation : MonoBehaviour {
 
     void Start(){
 
+		Time.timeScale = simulationSpeed;
 
 		myTerrain = GameObject.Find ("s1_Terrain");
 
@@ -105,25 +107,15 @@ public class Simulation : MonoBehaviour {
 	void Update () {
 		DisplayText("income");
 		CalculateTime();
-		// used for displaying the power added text when inserting a turbine.
-		if(spawnManager.buttonPressed == true){
-			StartCoroutine(calculateAddedPower());
-			spawnManager.buttonPressed = false;
+
+		if (prevtotalPowerOutput != totalPowerOutput) {
+			StartCoroutine (calculateAddedPower ());
+			prevtotalPowerOutput = totalPowerOutput;
 		}
-
-
-
-//		if (Input (0)) {
-//			RaycastHit hit;
-//			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-//			if (myTerrain.GetComponent<Collider>().Raycast (ray, out hit, Mathf.Infinity)) {
-//				transform.position = hit.point;
-//				// Debug.Log (transform.position.x + " " +  transform.position.y + " " + transform.position.z);
-//			}
-//		}
-
-
+		//	spawnManager.buttonPressed = false;
+		//}
 	}
+
 
 	//it is not called every frame, but every fixed frame (helps performance).
 	void FixedUpdate(){
@@ -142,12 +134,16 @@ public class Simulation : MonoBehaviour {
 	=====================================
 	*/
 	void CalculateTime(){
+		
+
 		Time.timeScale = simulationSpeed;
+
+
 		time = Time.time - startTime ;
 		minutes = ((int) (time/60)).ToString();
 		minutesCount = ((int) (time/60));
 		seconds = (time%60);
-		secondstr = ((int)seconds).ToString();
+		secondstr = ((int)seconds).ToString("D2");
 		timeText.text = minutes + ":" +secondstr ;
 	}
 

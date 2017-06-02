@@ -6,7 +6,7 @@ using goedle_sdk;
 
 public class ConfigurationMenu : MonoBehaviour {
 
-	public Simulation simulator;
+	public GameObject simulator;
 	public Canvas menu;
 
 	/*public variables where used because the menu
@@ -33,11 +33,14 @@ public class ConfigurationMenu : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		hideConfigMenu();
+
+		simulator.GetComponent<Simulation> ();
+
 		//set default values to sliders
-		SetDefautValueToSlider(windMinSlider,simulator.windMinSpeed);
-		SetDefautValueToSlider(windMaxSlider,simulator.windMaxSpeed);
-		SetDefautValueToSlider(reqsMinSlider,simulator.powerRequirementsMin);
-		SetDefautValueToSlider(reqsMaxSlider,simulator.powerRequirementsMax);
+		SetDefautValueToSlider(windMinSlider, simulator.GetComponent<Simulation> ().windMinSpeed);
+		SetDefautValueToSlider(windMaxSlider, simulator.GetComponent<Simulation> ().windMaxSpeed);
+		SetDefautValueToSlider(reqsMinSlider, simulator.GetComponent<Simulation> ().powerRequirementsMin);
+		SetDefautValueToSlider(reqsMaxSlider, simulator.GetComponent<Simulation> ().powerRequirementsMax);
 	}
 	
 	
@@ -46,16 +49,16 @@ public class ConfigurationMenu : MonoBehaviour {
 		and block his action */
 		if( menu.GetComponent<CanvasGroup>().alpha == 1){
 			ValidateSliderValues();	
-			SetDefautValueToSlider(windMinSlider,simulator.windMinSpeed);
-			SetDefautValueToSlider(windMaxSlider,simulator.windMaxSpeed);
-			SetDefautValueToSlider(reqsMinSlider,simulator.powerRequirementsMin);
-			SetDefautValueToSlider(reqsMaxSlider,simulator.powerRequirementsMax);
+			SetDefautValueToSlider(windMinSlider,simulator.GetComponent<Simulation> ().windMinSpeed);
+			SetDefautValueToSlider(windMaxSlider,simulator.GetComponent<Simulation> ().windMaxSpeed);
+			SetDefautValueToSlider(reqsMinSlider,simulator.GetComponent<Simulation> ().powerRequirementsMin);
+			SetDefautValueToSlider(reqsMaxSlider,simulator.GetComponent<Simulation> ().powerRequirementsMax);
 			
 			//display values next to sliders
-			SetTextValue(windMinText,simulator.windMinSpeed);
-			SetTextValue(windMaxText,simulator.windMaxSpeed);
-			SetTextValue(reqsMinText,simulator.powerRequirementsMin);
-			SetTextValue(reqsMaxText,simulator.powerRequirementsMax);
+			SetTextValue(windMinText,simulator.GetComponent<Simulation> ().windMinSpeed);
+			SetTextValue(windMaxText,simulator.GetComponent<Simulation> ().windMaxSpeed);
+			SetTextValue(reqsMinText,simulator.GetComponent<Simulation> ().powerRequirementsMin);
+			SetTextValue(reqsMaxText,simulator.GetComponent<Simulation> ().powerRequirementsMax);
 		}
 	}
 
@@ -73,39 +76,43 @@ public class ConfigurationMenu : MonoBehaviour {
 
 	public void hideConfigMenu(){
 		menu.GetComponent<CanvasGroup>().alpha = 0f;
-		GoedleAnalytics.track ("configure.wind_speed", "max ", simulator.windMaxSpeed.ToString() );
-		GoedleAnalytics.track ("configure.wind_speed", "min ", simulator.windMinSpeed.ToString() );
-		GoedleAnalytics.track ("configure.power", "max ", simulator.powerRequirementsMax.ToString() );
-		GoedleAnalytics.track ("configure.power", "min ", simulator.powerRequirementsMin.ToString() );
-		GoedleAnalytics.track ("configure.simulation_speed", null, simulator.simulationSpeed.ToString() );
+		GoedleAnalytics.track ("configure.wind_speed", "max ", simulator.GetComponent<Simulation> ().windMaxSpeed.ToString() );
+		GoedleAnalytics.track ("configure.wind_speed", "min ", simulator.GetComponent<Simulation> ().windMinSpeed.ToString() );
+		GoedleAnalytics.track ("configure.power", "max ", simulator.GetComponent<Simulation> ().powerRequirementsMax.ToString() );
+		GoedleAnalytics.track ("configure.power", "min ", simulator.GetComponent<Simulation> ().powerRequirementsMin.ToString() );
+		GoedleAnalytics.track ("configure.simulation_speed", null, simulator.GetComponent<Simulation> ().simulationSpeed.ToString() );
 		GoedleAnalytics.track ("configure.close", "CloseConfigurationPanel");
 	}
 	
 	public void SetwindMax(float max){
-		simulator.windMaxSpeed = (int) max;
+		simulator.GetComponent<Simulation> ().windMaxSpeed = (int) max;
 	}
 	public void SetwindMin(float min){
-		simulator.windMinSpeed = (int) min;
+		simulator.GetComponent<Simulation> ().windMinSpeed = (int) min;
 
 	}
 	public void SetRequirementsMax(float max){
-		simulator.powerRequirementsMax = (int) max;	
+		simulator.GetComponent<Simulation> ().powerRequirementsMax = (int) max;	
 	}
 	public void SetRequirementsMin(float min){
-		simulator.powerRequirementsMin = (int) min;	
+		simulator.GetComponent<Simulation> ().powerRequirementsMin = (int) min;	
 	}
-	public void SetsimulationSpeed(int index){
-		if(index ==0) simulator.simulationSpeed = 1;
-		else if(index ==1) simulator.simulationSpeed = 3;
-		else simulator.simulationSpeed = 4; 
+	public void SetsimulationSpeed(){
+
+		int index = GameObject.Find("dropdown_sim_speed").GetComponent<Dropdown>().value;
+
+		if(index ==0) simulator.GetComponent<Simulation> ().simulationSpeed = 1;
+		else if(index ==1) simulator.GetComponent<Simulation> ().simulationSpeed = 3;
+		else simulator.GetComponent<Simulation> ().simulationSpeed = 14; 
 	}
 
 	public void ValidateSliderValues(){
-		if(simulator.windMaxSpeed < simulator.windMinSpeed){
-			simulator.windMaxSpeed = simulator.windMinSpeed;
+
+		if(simulator.GetComponent<Simulation> ().windMaxSpeed < simulator.GetComponent<Simulation> ().windMinSpeed){
+			simulator.GetComponent<Simulation> ().windMaxSpeed = simulator.GetComponent<Simulation> ().windMinSpeed;
 		}
-		if(simulator.powerRequirementsMax < simulator.powerRequirementsMin){
-			simulator.powerRequirementsMax = simulator.powerRequirementsMin;
+		if(simulator.GetComponent<Simulation> ().powerRequirementsMax < simulator.GetComponent<Simulation> ().powerRequirementsMin){
+			simulator.GetComponent<Simulation> ().powerRequirementsMax = simulator.GetComponent<Simulation> ().powerRequirementsMin;
 		}
 	}
 }

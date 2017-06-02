@@ -6,7 +6,7 @@ public class ParticlesController : MonoBehaviour {
 	
 	private TurbineController turbine;
 	private Transform turbinePosition;
-	private bool isEmiting = false;
+	public bool isEmiting = false;
 	private GameObject obj;
 	
     // Use this for initialization
