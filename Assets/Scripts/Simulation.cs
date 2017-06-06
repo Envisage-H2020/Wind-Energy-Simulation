@@ -9,6 +9,9 @@ public class Simulation : MonoBehaviour {
 
 	public GameObject myTerrain;
 
+	// previous power consumption
+	private string prev_power_consumption = " ";
+
 	[Header ("Text fields")]
 	public Text windText;
 	public Text timeText;
@@ -125,27 +128,36 @@ public class Simulation : MonoBehaviour {
 			StartCoroutine (calculateAddedPower ());
 			prevtotalPowerOutput = totalPowerOutput;
 		}
-		//	spawnManager.buttonPressed = false;
-		//}
-	}
 
+		//made to call the method only when a change has occured and not every frame (optimization purposes)
+		if(!string.Equals(powerUsage, prev_power_consumption) ){
+
+			Color targetColor;
+
+			if (string.Equals (powerUsage, "Under power"))
+				targetColor = Color.red;
+			else if(string.Equals(powerUsage,"Correct power"))
+				targetColor = Color.white;
+			else 
+				targetColor = Color.blue;
+
+			foreach(Transform transf in GameObject.Find ("city").transform)
+				foreach(Transform transf2 in transf)
+					transf2.gameObject.GetComponent<Renderer> ().material.color = targetColor;
+
+			prev_power_consumption = powerUsage;
+		}
+	}
 
 	//it is not called every frame, but every fixed frame (helps performance).
 	void FixedUpdate(){
-		/* 
-		Upates the power produced and the power usage text.
-		This values are updated every fixed frame, because there in no
-		fixed time when their values will change (e.g wind changes, power reqs for fixed amount of time).		
-		*/
 		calculateOutputPower();
 		CalculatePowerUsage();
 	}
 
-	/* 
-	=====================================
+	/* =====================================
 			Calculate Time flow
-	=====================================
-	*/
+	===================================== */
 	void CalculateTime(){
 		
 
@@ -161,11 +173,9 @@ public class Simulation : MonoBehaviour {
 	}
 
 
-	/* 
-	=====================================
+	/* =====================================
 			Wind speed calculation
-	=====================================
-	*/
+	===================================== */
 	void CalculateWindSpeed(){
 		
 		int windAdjust;
@@ -202,12 +212,9 @@ public class Simulation : MonoBehaviour {
 	}
 
 
-	/* 
-	=====================================
+	/* =====================================
 		Power requirements calculation
-	=====================================
-	*/
-
+	===================================== */
 	void CalculatePowerRequirements(){
 		int powerAdjust;
 		int powerAdjustMultiplier = (Mathf.FloorToInt(Random.Range(5.0f,8.0f)))*100;	
@@ -245,11 +252,9 @@ public class Simulation : MonoBehaviour {
 	}
 
 
-	/* 
-	=====================================
+	/* =====================================
 		Calculate power Output
-	=====================================
-	*/
+	===================================== */
 	void calculateOutputPower(){
 		singleTurbinePower = singlePowerOutput[currentWindSpeed];
 		totalPowerOutput = singleTurbinePower * numberOfTurbinesOperating;

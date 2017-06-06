@@ -10,7 +10,7 @@ public class PlayerPersonalInfo : MonoBehaviour {
 	private string playerName;
 	private string playerSurname;
 	private string playerSchoolName;
-	public LevelManager levelMng;
+	//public LevelManager levelMng;
 	public Text msgText; // text that informs the user to enter personal info, if there are left empty.
 
 
@@ -39,12 +39,12 @@ public class PlayerPersonalInfo : MonoBehaviour {
 		//TODO: "http" call can be entered here to retrieve the value.
 	}
 
-	public void InputFieldsFilled(){
-		if(playerName != null && playerSurname != null && playerSchoolName != null){
-			levelMng.LoadNextLevel();
-		}
-		else {
-			msgText.enabled = true;
-		}
-	}
+//	public void InputFieldsFilled(){
+//		if(playerName != null && playerSurname != null && playerSchoolName != null){
+//			levelMng.LoadNextLevel();
+//		}
+//		else {
+//			msgText.enabled = true;
+//		}
+//	}
 }
