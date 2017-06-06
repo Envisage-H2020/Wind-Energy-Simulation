@@ -4,7 +4,7 @@ using goedle_sdk;
 
 public class PlayerStatistics : MonoBehaviour {
 
-	private Simulation simulator;
+	private Simulation simulation;
 	public static int underPowerSec;
     public static int correctPowerSec;
     public static int overPowerSec;
@@ -14,7 +14,7 @@ public class PlayerStatistics : MonoBehaviour {
     void Start () {
 		endSimulation = false;
 		if(!SceneManager.GetActiveScene().name.Equals("S_Reward")){ // if not the last scene
-			simulator = GameObject.FindGameObjectWithTag("Simulator").GetComponent<Simulation>();
+			simulation = GameObject.Find("simulator").GetComponent<Simulation>();
 			InitializeCountValues();
 			InvokeRepeating("CalculatePowerUsageStatistics", 0.0f, 1.0f);
 		}
@@ -37,7 +37,7 @@ public class PlayerStatistics : MonoBehaviour {
 	*/
 	public void checkEndSimulation(){
 		if(!SceneManager.GetActiveScene().name.Equals("S_Reward")){  // if not the last scene
-			if(simulator.minutesCount >= 24 || endSimulation == true){
+			if(simulation.minutesCount >= 24 || endSimulation == true){
 				GoedleAnalytics.track ("end.simulation");
 				SceneManager.LoadScene("S_Reward" ); // loads last scene
 				Resources.UnloadUnusedAssets(); //removes unused assets to free memory
@@ -56,10 +56,10 @@ public class PlayerStatistics : MonoBehaviour {
 	*/
  	void CalculatePowerUsageStatistics(){
 		if( !SceneManager.GetActiveScene().name.Equals("S_Reward") ){
-			if(string.Equals(simulator.powerUsage,"Under power")){
+			if(string.Equals(simulation.powerUsage,"Under power")){
 				underPowerSec++;
 			}
-			else if(string.Equals(simulator.powerUsage,"Correct power")){
+			else if(string.Equals(simulation.powerUsage,"Correct power")){
 				correctPowerSec++;
 			}
 			else {

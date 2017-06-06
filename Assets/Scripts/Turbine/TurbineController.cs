@@ -8,13 +8,11 @@ public class TurbineController : MonoBehaviour {
 	//dependacies of other scripts
 	private TurbineAnimCtrl turbineAnim;
 	private TurbineDamage turbineDmg;
-    private SpawnManager turbineSpawner;
 	private TurbineInputManager inputManager;
 	private TurbineRepair repair;
-	private Simulation simulator;
-	public static int damagedTurbines = 0;
+	private Simulation simulation;
+
 	private bool lowWindDisabled = false; //shows if turbine should stop rotating when wind under 4 m/s.
-	private PauseGame gameManager;
 	private bool scriptsEnabled = true;
 
     // Use this for initialization
@@ -23,26 +21,25 @@ public class TurbineController : MonoBehaviour {
 		turbineAnim = GetComponentInChildren<TurbineAnimCtrl>();
 		turbineDmg = GetComponent<TurbineDamage>();
 		repair = GetComponent<TurbineRepair>();
-		turbineSpawner = GameObject.FindGameObjectWithTag("Spawner").GetComponent<SpawnManager>();
-		simulator = GameObject.FindGameObjectWithTag("Simulator").GetComponent<Simulation>();
-		gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<PauseGame>();
+		simulation  = GameObject.Find("simulator").GetComponent<Simulation>();
 	}
 
 	void Update(){
-		if(gameManager.gamePaused == true)
-			PauseTurbine(gameManager.gamePaused);		
-		else{
-			if(scriptsEnabled == false) UnPauseTurbine(gameManager.gamePaused);
+		if (simulation.gamePaused == true) {
+			pauseTurbineStateIntention (false);		
+		}else{
+			if(scriptsEnabled == false) 
+				pauseTurbineStateIntention (true);		
 			
 			//sets the speed of the rotation based on the wind rotation
-			turbineAnim.SetRotationSpeed(simulator.currentWindSpeed);
+			turbineAnim.SetRotationSpeed(simulation.currentWindSpeed);
 
 
 			//used for disables rotation when wind is low
-			if(simulator.currentWindSpeed < 3 && IsRotating() == true){
+			if(simulation.currentWindSpeed < 3 && IsRotating() == true){
 				DisableOnWindLow();
 			}
-			if(simulator.currentWindSpeed > 3 && IsRotating() == false && lowWindDisabled == true){
+			if(simulation.currentWindSpeed > 3 && IsRotating() == false && lowWindDisabled == true){
 				EnableOnWindHigh();
 			}
 		}
@@ -74,10 +71,10 @@ public class TurbineController : MonoBehaviour {
 
 	public void repairTurbine(){
 		//decreases total income
-		if(simulator.income >= 1){
-			simulator.income--;
+		if(simulation.income >= 1){
+			simulation.income--;
 			repair.turbineRepair();
-			damagedTurbines--;
+			simulation.damagedTurbines--;
 		}
 	}
 
@@ -88,59 +85,38 @@ public class TurbineController : MonoBehaviour {
 
 	public void DisableTurbine(){
 		//used to display the numbers for the output values next to the minimap
-		StartCoroutine(simulator.calculateSubstractedPower());
+		StartCoroutine(simulation.calculateSubstractedPower());
 
 		turbineAnim.DisableRotation();
-		turbineSpawner.numberOfTurbinesOperating--;	
+		simulation.numberOfTurbinesOperating--;	
 	}
 
 	public void EnableTurbine(){
 		//used to display the numbers for the output values next to the minimap
-		StartCoroutine(simulator.calculateAddedPower());
+		StartCoroutine(simulation.calculateAddedPower());
 
 		turbineAnim.EnableRotation();
-		turbineSpawner.numberOfTurbinesOperating++;
+		simulation.numberOfTurbinesOperating++;
 	}
-
 
 
 	//disables all scripts if game is paused
-	public  void PauseTurbine(bool gamePaused){
-		if(gamePaused == true){
+	public void pauseTurbineStateIntention(bool intentTurbine){
+		
 			//disable animation
-			turbineAnim.enabled = false;
-			turbineAnim.GetComponent<Animator>().enabled = false;
+		turbineAnim.enabled = intentTurbine;
+		turbineAnim.GetComponent<Animator>().enabled = intentTurbine;
 
-			turbineDmg.enabled = false;
-			repair.enabled = false;
-			turbineSpawner.enabled = false;
-			inputManager.enabled = false;
+		turbineDmg.enabled = intentTurbine;
+		repair.enabled = intentTurbine;
+		inputManager.enabled = intentTurbine;
 
 			//used in the update function to minimize the times it calls the function
-			scriptsEnabled = false;
-		}
-	}
-
-	//enables all scripts if game is paused
-	public void UnPauseTurbine(bool gamePaused){
-		if(gamePaused == false){
-			//enable animation
-			turbineAnim.enabled = true;
-			turbineAnim.GetComponent<Animator>().enabled = true;
-
-			turbineDmg.enabled = true;
-			repair.enabled = true;
-			turbineSpawner.enabled = true;
-			inputManager.enabled = true;
-			
-			//used in the update function to minimize the times it calls the function
-			scriptsEnabled = true;
-		}
+		scriptsEnabled = intentTurbine;
 	}
 
 
 	/*--------- Auxiliary Gets ------------*/
-
 	public bool IsRotating(){
 		return turbineAnim.isRotating; 	
 	}
@@ -153,12 +129,13 @@ public class TurbineController : MonoBehaviour {
 		return repair.isRepaired;
 	}
 
-	public int getTotalNumberOfTurbines(){
-		return turbineSpawner.numberOfTurbines;	
-	}
 
 	public int getNumberOfTurbinesOperating(){
-		return turbineSpawner.numberOfTurbinesOperating;	
+		return simulation.numberOfTurbinesOperating;	
+	}
+
+	public int getNumberOfTurbines(){
+		return simulation.numberOfTurbines;	
 	}
 
 }

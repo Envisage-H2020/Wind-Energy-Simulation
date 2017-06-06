@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using goedle_sdk;
 
 public class Simulation : MonoBehaviour {
 
@@ -25,6 +26,17 @@ public class Simulation : MonoBehaviour {
 
 	[Space]
 	[Header ("Simulation variables")]
+
+
+
+	/* Turbines operating */
+	public int numberOfTurbines = 0;
+	public int numberOfTurbinesOperating = 0;
+	public int damagedTurbines = 0;
+
+	/* pause vars */
+	public bool gamePaused = false;
+	private int prevSimulationSpeed = 1;
 
 	/* =====================================
 			wind simulation fields
@@ -63,7 +75,6 @@ public class Simulation : MonoBehaviour {
 	private int[] singlePowerOutput = {0,0,50,100,200,400,700,1000,1500,2000,2300,2400,2450,2500,2500,2500,2500,2500,2500,2500,2500};
     private int totalPowerOutput;
 	private int prevtotalPowerOutput;
-	public SpawnManager spawnManager;
 	public string powerUsage = "Under power" ; //TODO : maybe this can be changed to a enum, but it will less readable to the next developer that gets the source code.
     public float income = 8;
 
@@ -102,7 +113,9 @@ public class Simulation : MonoBehaviour {
 		InvokeRepeating("incomeCalculation",firstExecution,60.0f);
 	}
 	
-	
+
+
+
 	// Update is called once per frame
 	void Update () {
 		DisplayText("income");
@@ -239,7 +252,7 @@ public class Simulation : MonoBehaviour {
 	*/
 	void calculateOutputPower(){
 		singleTurbinePower = singlePowerOutput[currentWindSpeed];
-		totalPowerOutput = singleTurbinePower * spawnManager.numberOfTurbinesOperating;
+		totalPowerOutput = singleTurbinePower * numberOfTurbinesOperating;
 		DisplayText("powerOutput");
 	}
 
@@ -368,4 +381,21 @@ public class Simulation : MonoBehaviour {
 		}
 	}
 
+
+	/*===========================
+	 *  Pause functionality 
+	 * ========================= */
+	public void PauseButtonPressed(){
+
+		if(!gamePaused){
+			gamePaused = true;
+			prevSimulationSpeed = simulationSpeed;
+			simulationSpeed = 0;
+			GoedleAnalytics.track ("pause.simulation");
+		} else {
+			gamePaused = false;
+			simulationSpeed = prevSimulationSpeed;
+			GoedleAnalytics.track ("resume.simulation");
+		}
+	}
 }

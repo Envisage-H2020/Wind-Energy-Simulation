@@ -6,11 +6,12 @@ using goedle_sdk;
 public class TurbineQuadSelector : MonoBehaviour {
 
 	public Vector3 rotation = Vector3.zero;
-	private SpawnManager turbineSpawner;
+	private Simulation simulation;
+
 
 	// Use this for initialization
 	void Start () {
-		turbineSpawner = GameObject.FindGameObjectWithTag("Spawner").GetComponent<SpawnManager>();
+		simulation = GameObject.Find("simulator").GetComponent<Simulation>();
 	}
 	
 	// Update is called once per frame
@@ -23,12 +24,10 @@ public class TurbineQuadSelector : MonoBehaviour {
 		transform.Rotate (rotation * Time.deltaTime);	
 
 		if(Input.GetMouseButtonDown(0)){
-
-
 			GoedleAnalytics.track ("add.turbine");
 
-			turbineSpawner.numberOfTurbines ++;
-			turbineSpawner.numberOfTurbinesOperating++;
+			simulation.numberOfTurbines ++;
+			simulation.numberOfTurbinesOperating++;
 
 			// Inactivate the Quad
 			gameObject.SetActive (false);
@@ -39,13 +38,6 @@ public class TurbineQuadSelector : MonoBehaviour {
 					foreach (Transform child2 in child.gameObject.transform) 
 						if (child2.gameObject.name == "Turbine_Fan" || child2.gameObject.name == "Turbine_Main")
 							child2.gameObject.GetComponent<Renderer> ().enabled = true;
-
-
-
-
-
-			
-
 		}
 	}
 }

@@ -4,43 +4,53 @@ using UnityEngine;
 
 public class ParticlesController : MonoBehaviour {
 	
-	private TurbineController turbine;
-	private Transform turbinePosition;
+	private TurbineController turbineController;
+	//private Transform turbinePosition;
 	public bool isEmiting = false;
-	private GameObject obj;
+	//private GameObject obj;
 	
     // Use this for initialization
     void Start () {
-		turbinePosition = GetComponent<Transform>();
-		turbine = GetComponent<TurbineController>();
+	//	turbinePosition = GetComponent<Transform>();
+		turbineController = GetComponent<TurbineController>();
 	}
 
 	void Update(){
 
-		if(turbine.IsDamaged() == true && isEmiting == false){
+		if(turbineController.IsDamaged() == true && isEmiting == false){
 			EmitParticle();
 		}
-		else if(turbine.isRepaired() == true && isEmiting == true){
+		else if(turbineController.isRepaired() == true && isEmiting == true){
 			StopParticle();
 		}
 	}
 	
 	public void EmitParticle(){
-		SetAndInstantiateParticle();	
+
+
+		foreach (Transform child in gameObject.transform)
+			if (child.gameObject.name == "Turbine_Smoke") 
+				child.gameObject.SetActive (true);
+
+
+
+//		obj = ObjectPooler.current.GetPooledObject();
+//		if(obj == null)  return;
+//
+//		//obj.transform.position = new Vector3 (turbinePosition.position.x, turbinePosition.position.y + 30,turbinePosition.position.z);
+//		obj.SetActive(true);
+
 		isEmiting = true;
 	}
 
-	//set the position of the particle effect and istantiates it.
-	public void SetAndInstantiateParticle(){
-		obj = ObjectPooler.current.GetPooledObject();
-		if(obj == null)  return;
-
-		obj.transform.position = new Vector3 (turbinePosition.position.x,turbinePosition.position.y + 30,turbinePosition.position.z);
-		obj.SetActive(true);
-	}
 
 	public void StopParticle(){
-		obj.SetActive(false);
+
+		foreach (Transform child in gameObject.transform)
+			if (child.gameObject.name == "Turbine_Smoke") 
+				child.gameObject.SetActive (false);
+
+//		obj.SetActive(false);
 		isEmiting = false;
 	}
 }
