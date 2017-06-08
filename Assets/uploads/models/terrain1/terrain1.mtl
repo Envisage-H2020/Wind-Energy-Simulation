@@ -1,0 +1,28 @@
+# Wavefront .mtl file  -  created by SpaceDraw
+
+# File created: 17-03-10, 13:05
+
+newmtl grass2
+Ns 10.0
+d 1.0
+Tr 0.0
+illum 2
+Ka 1.0 1.0 1.0 
+Kd 1.0 1.0 1.0 
+Ks 0.0 0.0 0.0 
+Ke 0.0 0.0 0.0 
+map_Ka grass2.jpg
+map_Kd grass2.jpg
+
+newmtl standard
+Ns 20.0
+d 1.0
+Tr 0.0
+illum 2
+Ka 0.50189996 0.50189996 0.50189996 
+Kd 0.50189996 0.50189996 0.50189996 
+Ks 0.50189996 0.50189996 0.50189996 
+Ke 0.0 0.0 0.0 
+map_Ka water4.jpg
+map_Kd water4.jpg
+
