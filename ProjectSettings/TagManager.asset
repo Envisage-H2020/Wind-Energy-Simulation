@@ -4,15 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - PopUpCanvas
-  - Spawner
-  - Simulator
-  - smoke
-  - menu
-  - Turbine
-  - Level Manager
-  - lv
-  - GameManager
+  - consumer
   layers:
   - Default
   - TransparentFX

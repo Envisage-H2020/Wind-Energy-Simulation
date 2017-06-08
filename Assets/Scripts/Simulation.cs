@@ -33,7 +33,6 @@ public class Simulation : MonoBehaviour {
 
 
 	/* Turbines operating */
-	public int numberOfTurbines = 0;
 	public int numberOfTurbinesOperating = 0;
 	public int damagedTurbines = 0;
 
@@ -141,9 +140,10 @@ public class Simulation : MonoBehaviour {
 			else 
 				targetColor = Color.blue;
 
-			foreach(Transform transf in GameObject.Find ("city").transform)
-				foreach(Transform transf2 in transf)
-					transf2.gameObject.GetComponent<Renderer> ().material.color = targetColor;
+			GameObject[] consumersGO = GameObject.FindGameObjectsWithTag ("consumer");
+				foreach(GameObject go in consumersGO)
+					foreach (Transform tr in go.transform)
+						tr.gameObject.GetComponent<Renderer> ().material.color = targetColor;
 
 			prev_power_consumption = powerUsage;
 		}
@@ -257,6 +257,7 @@ public class Simulation : MonoBehaviour {
 	===================================== */
 	void calculateOutputPower(){
 		singleTurbinePower = singlePowerOutput[currentWindSpeed];
+
 		totalPowerOutput = singleTurbinePower * numberOfTurbinesOperating;
 		DisplayText("powerOutput");
 	}
