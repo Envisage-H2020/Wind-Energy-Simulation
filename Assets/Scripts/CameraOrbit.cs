@@ -6,10 +6,17 @@ public class CameraOrbit : MonoBehaviour {
 	public Transform rotationPoint;
 	private Vector3 startPos;
 	private Quaternion startRot;
-	
+
+	float minFov = 15f;
+	float maxFov = 90f;
+	float sensitivity = 10f;
+	Camera myCamera;
+
 	void Start(){
 		startPos = GetComponent<Transform>().position;
 		startRot = GetComponent<Transform>().rotation;
+
+		myCamera = gameObject.GetComponent<Camera> ();
 	}
 
 	// when rendering camera always use late update.
@@ -19,6 +26,12 @@ public class CameraOrbit : MonoBehaviour {
 		}
 		else if (Input.GetKeyDown(KeyCode.C) || Input.GetMouseButton(2)){
 			GetDefaultCameraView();	
+		} else if (Input.GetAxis("Mouse ScrollWheel") != 0){
+			float fov= myCamera.fieldOfView;
+			fov -= Input.GetAxis("Mouse ScrollWheel") * sensitivity;
+			fov = Mathf.Clamp(fov, minFov, maxFov);
+			myCamera.fieldOfView = fov;
+
 		}
 	}
 

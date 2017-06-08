@@ -402,7 +402,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: c5841a33c1c70f84fadfae9a11bd1e88, type: 3}
       propertyPath: m_RootOrder
-      value: 16
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: c5841a33c1c70f84fadfae9a11bd1e88, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -967,7 +967,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: a0e427b4a134ad24ab518fa38703e8b1, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: a0e427b4a134ad24ab518fa38703e8b1, type: 3}
       propertyPath: m_LocalScale.x
@@ -1691,7 +1691,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: a0e427b4a134ad24ab518fa38703e8b1, type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: a0e427b4a134ad24ab518fa38703e8b1, type: 3}
       propertyPath: m_LocalScale.x
@@ -2517,7 +2517,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: c5841a33c1c70f84fadfae9a11bd1e88, type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: c5841a33c1c70f84fadfae9a11bd1e88, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -2602,7 +2602,7 @@ GameObject:
   - component: {fileID: 607866474}
   - component: {fileID: 607866473}
   m_Layer: 0
-  m_Name: Canvas(screen)
+  m_Name: s1_canvas_main
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3206,7 +3206,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -450, y: 150}
   m_SizeDelta: {x: 388, y: 412}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &725840567
@@ -8151,7 +8151,7 @@ GameObject:
   - component: {fileID: 1108765961}
   - component: {fileID: 1108765965}
   m_Layer: 0
-  m_Name: Canvas(ConfigMenu)
+  m_Name: s1_canvas_config_menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8525,7 +8525,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: c5841a33c1c70f84fadfae9a11bd1e88, type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: c5841a33c1c70f84fadfae9a11bd1e88, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -12096,48 +12096,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 0
---- !u!1 &1336999248
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1336999250}
-  - component: {fileID: 1336999249}
-  m_Layer: 0
-  m_Name: WindZone
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!182 &1336999249
-WindZone:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1336999248}
-  m_Enabled: 1
-  m_Mode: 0
-  m_Radius: 20
-  m_WindMain: 0.5
-  m_WindTurbulence: 0.5
-  m_WindPulseMagnitude: 0.5
-  m_WindPulseFrequency: 0.01
---- !u!4 &1336999250
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1336999248}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.32, y: 9.83, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1352872325
 GameObject:
   m_ObjectHideFlags: 0
@@ -12246,7 +12204,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1394889829
 GameObject:
@@ -12642,7 +12600,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: a0e427b4a134ad24ab518fa38703e8b1, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: a0e427b4a134ad24ab518fa38703e8b1, type: 3}
       propertyPath: m_LocalScale.x
