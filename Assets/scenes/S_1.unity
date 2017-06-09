@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.55
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1488818239}
-  m_IndirectSpecularColor: {r: 0.360373, g: 0.37821788, b: 0.44958508, a: 0.55}
+  m_IndirectSpecularColor: {r: 0.36046275, g: 0.37827408, b: 0.44961816, a: 0.55}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1868,7 +1868,7 @@ GameObject:
   - component: {fileID: 436443004}
   - component: {fileID: 436443003}
   m_Layer: 0
-  m_Name: TimeTextImage
+  m_Name: img_time_background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2129,7 +2129,7 @@ GameObject:
   - component: {fileID: 524523662}
   - component: {fileID: 524523661}
   m_Layer: 0
-  m_Name: pause button
+  m_Name: bt_pause
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2953,7 +2953,7 @@ GameObject:
   - component: {fileID: 659979567}
   - component: {fileID: 659979566}
   m_Layer: 0
-  m_Name: Panel (values)
+  m_Name: s1_main_canvas_panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3254,7 +3254,7 @@ GameObject:
   - component: {fileID: 742446931}
   - component: {fileID: 742446930}
   m_Layer: 0
-  m_Name: Config menu btn
+  m_Name: s1_btn_open_config
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17102,7 +17102,7 @@ GameObject:
   - component: {fileID: 1737810636}
   - component: {fileID: 1737810635}
   m_Layer: 0
-  m_Name: time
+  m_Name: txt_time_value
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17222,7 +17222,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1788852836}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 898.93713, y: 354.93845, z: 554.59}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -17784,7 +17784,7 @@ GameObject:
   - component: {fileID: 2012787128}
   - component: {fileID: 2012787127}
   m_Layer: 0
-  m_Name: Image
+  m_Name: img_bt_pause
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
