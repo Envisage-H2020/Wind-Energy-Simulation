@@ -8,10 +8,6 @@
 #warning "Your Unity version does not support native plugins - goedle.io disabled"
 #endif
 
-#if !(UNITY_STANDALONE_OSX || UNITY_STANDALONE_WIN || UNITY_EDITOR || UNITY_IOS || UNITY_ANDROID)
-#define DISABLE_GOEDLE
-#warning "Your Unity version does not support native plugins - goedle.io disabled"
-#endif
 
 using UnityEngine;
 using System;
