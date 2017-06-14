@@ -10,15 +10,21 @@ namespace goedle_sdk.detail
 		private string api_key = null;
 		private string app_key = null;
 		private string user_id = null;
+		private string app_version = null;
 
-		public GoedleAnalytics (string api_key, string app_key, string user_id)
+		public GoedleAnalytics (string api_key, string app_key, string user_id, string app_version)
 		{
 			this.api_key = api_key;
 			this.app_key = app_key;
 			this.user_id = user_id;
+			this.app_version = app_version;
+
 			track_launch ();
 		}
 
+		public void set_user_id(string user_id){
+			this.user_id = user_id;
+		}
 
 		public void track_launch ()
 		{
@@ -34,7 +40,7 @@ namespace goedle_sdk.detail
 			int timezone = (int)(((DateTime.UtcNow - DateTime.Now).TotalSeconds) * -1 * 1000);
 			GoedleAtom rt = null;
 			if (launch == true) {
-				rt = new GoedleAtom (app_key, this.user_id, ts, event_name, event_id, event_value, timezone, GoedleConstants.BUILD_NR);
+				rt = new GoedleAtom (app_key, this.user_id, ts, event_name, event_id, event_value, timezone, GoedleConstants.BUILD_NR, app_version);
 			} else {
 				rt = new GoedleAtom (app_key, this.user_id, ts, event_name, event_id, event_value, trait_key, trait_value);
 			}

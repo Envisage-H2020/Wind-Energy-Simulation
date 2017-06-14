@@ -24,6 +24,7 @@ namespace goedle_sdk.detail
 		private int build_nr;
 		private string trait_key= null;
 		private string trait_value = null;
+		private string app_version = null;
 
 		public GoedleAtom(string app_key, 
 			string user_id, 
@@ -32,7 +33,8 @@ namespace goedle_sdk.detail
 			string event_id, 
 			string event_value,
 			int timezone, 
-			int build_nr) {
+			int build_nr,
+			string app_version) {
 			//ALWAYS
 
 			this.app_key = app_key;
@@ -43,6 +45,7 @@ namespace goedle_sdk.detail
 			this.ts = ts;
 
 			this.event_name = event_name;
+			this.app_version = app_version;
 
 			//ONLAUNCH
 			// The Timzone is in seconds and with -1, so we have to transform it
@@ -90,6 +93,7 @@ namespace goedle_sdk.detail
 			goedleAtom.Add("ts",this.ts);
 			goedleAtom.Add("event",this.event_name);
 			goedleAtom.Add("build_nr",this.build_nr);
+			goedleAtom.Add("app_version",this.app_version);
 
 			if (this.timezone != Int32.MaxValue)
 				goedleAtom.Add("timezone",this.timezone);

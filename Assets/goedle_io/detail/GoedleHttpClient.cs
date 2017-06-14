@@ -18,17 +18,16 @@ namespace goedle_sdk.detail
 			
 		//public async void send(string[] pass)
 		public void send(string[] pass)
-				{
-				Dictionary<string, string> headers = 
-				new Dictionary<string, string>();
-				headers.Add("Content-Type", "application/json");
-				headers.Add("Authorization", pass[1]);
-				UnitySystemConsoleRedirector.Redirect();
-				// To Check Content before it is send
-				//Console.WriteLine(pass[0]);
+			{
+			Dictionary<string, string> headers = 
+			new Dictionary<string, string>();
+			headers.Add("Content-Type", "application/json");
+			headers.Add("Authorization", pass[1]);
+			UnitySystemConsoleRedirector.Redirect();
+			// To Check Content before it is send
+			Console.WriteLine(pass[0]);
 			byte[] pData = Encoding.UTF8.GetBytes(pass[0].ToCharArray());
-
-			WWW www = new WWW(GoedleConstants.TRACK_URL, pData, headers);
-		}
+			new WWW(GoedleConstants.TRACK_URL, pData, headers);
+			}
 }
 }

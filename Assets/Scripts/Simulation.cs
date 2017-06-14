@@ -105,12 +105,12 @@ public class Simulation : MonoBehaviour {
 		// Sending game state every 15 seconds
 		if (Time.time > nextActionTime ) {
 			nextActionTime += period;
-			GoedleAnalytics.track ("game.state", "currentWindSpeed", currentWindSpeed);
-			GoedleAnalytics.track ("game.state", "currentPowerReqs", currentPowerReqs);
-			GoedleAnalytics.track ("game.state", "powerUsage", powerUsage);
-			GoedleAnalytics.track ("game.state", "income", income);
-			GoedleAnalytics.track ("game.state", "numberOfTurbines", spawnManager.numberOfTurbines);
-			GoedleAnalytics.track ("game.state", "numberOfTurbinesOperating", spawnManager.numberOfTurbinesOperating);
+			GoedleAnalytics.track ("game.state", "currentWindSpeed", currentWindSpeed.ToString());
+			GoedleAnalytics.track ("game.state", "currentPowerReqs", currentPowerReqs.ToString());
+			GoedleAnalytics.track ("game.state", "powerUsage", powerUsage.ToString());
+			GoedleAnalytics.track ("game.state", "income", income.ToString());
+			GoedleAnalytics.track ("game.state", "numberOfTurbines", spawnManager.numberOfTurbines.ToString());
+			GoedleAnalytics.track ("game.state", "numberOfTurbinesOperating", spawnManager.numberOfTurbinesOperating.ToString());
 		}
 		// used for displaying the power added text when inserting a turbine.
 		if(spawnManager.buttonPressed == true){
