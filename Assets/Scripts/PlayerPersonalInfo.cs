@@ -25,23 +25,25 @@ public class PlayerPersonalInfo : MonoBehaviour {
 
 	public void NameEntered(string text){
 		playerName = text;
-		GoedleAnalytics.identify ("first_name", playerName);
 
 		//TODO: "http" call can be entered here to retrieve the value.
 	}
 	public void SurnameEntered(string text){
 		playerSurname = text;
-		GoedleAnalytics.identify ("last_name", playerSurname);
 		//TODO: "http" call can be entered here to retrieve the value.
 	}
 	public void SchoolNameEntered(string text){
 		playerSchoolName = text;
-		GoedleAnalytics.track ("group", "school", playerSchoolName);
 		//TODO: "http" call can be entered here to retrieve the value.
 	}
 
 	public void InputFieldsFilled(){
 		if(playerName != null && playerSurname != null && playerSchoolName != null){
+			string user_id = (playerName + playerSurname + playerSchoolName).ToLower().Trim();
+			GoedleAnalytics.setUserId (user_id);
+			GoedleAnalytics.identify ("first_name", playerName);
+			GoedleAnalytics.identify ("last_name", playerSurname);
+			GoedleAnalytics.track ("group", "school", playerSchoolName);
 			levelMng.LoadNextLevel();
 		}
 		else {
