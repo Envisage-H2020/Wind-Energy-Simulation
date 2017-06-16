@@ -92,7 +92,7 @@ namespace goedle_sdk
 		/// <param name="trait_key">for now only last_name and first_name is supported</param>
 		/// <param name="trait_value">the value of the key</param>
 
-		public static void identify(string traitKey, string traitValue)
+		public static void trackTraits(string traitKey, string traitValue)
 		{
 			#if !DISABLE_GOEDLE
 			if (tracking_enabled)
@@ -110,7 +110,7 @@ namespace goedle_sdk
 		{
 			#if !DISABLE_GOEDLE
 			if (tracking_enabled)
-			instance.set_user_id(user_id);
+				instance.set_user_id(user_id);
 			#endif
 		}
 
