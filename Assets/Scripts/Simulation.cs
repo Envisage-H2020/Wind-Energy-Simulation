@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using goedle_sdk;
 
 public class Simulation : MonoBehaviour {
 	[Header ("Text fields")]
@@ -67,6 +68,10 @@ public class Simulation : MonoBehaviour {
 	private Color green;
 	private Color blue;
 
+	// Game state config
+	private float nextActionTime = 0.0f;
+	public float period = 15.0f;
+
     void Start(){
 		powerOutputSideText.enabled = false;
 		powerOutputsideImage.enabled = false;
@@ -97,6 +102,16 @@ public class Simulation : MonoBehaviour {
 	void Update () {
 		DisplayText("income");
 		CalculateTime();
+		// Sending game state every 15 seconds
+		if (Time.time > nextActionTime ) {
+			nextActionTime += period;
+			GoedleAnalytics.track ("game.state", "currentWindSpeed", currentWindSpeed.ToString());
+			GoedleAnalytics.track ("game.state", "currentPowerReqs", currentPowerReqs.ToString());
+			GoedleAnalytics.track ("game.state", "powerUsage", powerUsage.ToString());
+			GoedleAnalytics.track ("game.state", "income", income.ToString());
+			GoedleAnalytics.track ("game.state", "numberOfTurbines", spawnManager.numberOfTurbines.ToString());
+			GoedleAnalytics.track ("game.state", "numberOfTurbinesOperating", spawnManager.numberOfTurbinesOperating.ToString());
+		}
 		// used for displaying the power added text when inserting a turbine.
 		if(spawnManager.buttonPressed == true){
 			StartCoroutine(calculateAddedPower());

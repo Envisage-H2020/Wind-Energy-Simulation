@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using goedle_sdk;
+using System.Security.Cryptography;
+using System.Text;
 
 public class PlayerStatistics : MonoBehaviour {
 
@@ -38,7 +40,6 @@ public class PlayerStatistics : MonoBehaviour {
 	or after 24 minutes have passed.
 	*/
 	public void EndSimulation(){
-		GoedleAnalytics.track ("end.simulation");
 		if(SceneManager.GetActiveScene().buildIndex != sceneCount - 1){  // if not the last scene
 			if(simulator.minutesCount >= 24 || endSimulation == true){
 				SceneManager.LoadScene(sceneCount - 1 ); // loads last scene
@@ -48,6 +49,7 @@ public class PlayerStatistics : MonoBehaviour {
 	}
 
 	public void ExitButtonPressed(){
+		GoedleAnalytics.track ("end.simulation");
 		endSimulation = true;
 	}
 	
@@ -72,6 +74,27 @@ public class PlayerStatistics : MonoBehaviour {
 
 	void GetPlayerInfo(){
 		
+	}
+
+	static string GetMd5Hash(MD5 md5Hash, string input)
+	{
+
+		// Convert the input string to a byte array and compute the hash.
+		byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
+
+		// Create a new Stringbuilder to collect the bytes
+		// and create a string.
+		StringBuilder sBuilder = new StringBuilder();
+
+		// Loop through each byte of the hashed data 
+		// and format each one as a hexadecimal string.
+		for (int i = 0; i < data.Length; i++)
+		{
+			sBuilder.Append(data[i].ToString("x2"));
+		}
+
+		// Return the hexadecimal string.
+		return sBuilder.ToString();
 	}
 
 }

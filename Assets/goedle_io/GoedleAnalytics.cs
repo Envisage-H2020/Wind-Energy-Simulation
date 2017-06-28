@@ -3,11 +3,12 @@
     goedle.io SDK for Unity version v1.0.0
 */
 
+/*
 #if !UNITY_PRO_LICENSE && (UNITY_2_6||UNITY_2_6_1||UNITY_3_0||UNITY_3_0_0||UNITY_3_1||UNITY_3_2||UNITY_3_3||UNITY_3_4||UNITY_3_5||UNITY_4_0||UNITY_4_0_1||UNITY_4_1||UNITY_4_2||UNITY_4_3||UNITY_4_5||UNITY_4_6)
 #define DISABLE_GOEDLE
 #warning "Your Unity version does not support native plugins - goedle.io disabled"
 #endif
-
+*/
 
 using UnityEngine;
 using System;
@@ -91,13 +92,28 @@ namespace goedle_sdk
 		/// <param name="trait_key">for now only last_name and first_name is supported</param>
 		/// <param name="trait_value">the value of the key</param>
 
-		public static void identify(string traitKey, string traitValue)
+		public static void trackTraits(string traitKey, string traitValue)
 		{
 			#if !DISABLE_GOEDLE
 			if (tracking_enabled)
 				instance.track(null, null, null, traitKey, traitValue);
 			#endif
 		}
+
+
+		/// <summary>
+		/// set user id function for a user.
+		/// </summary>
+		/// <param name="user_id">a custom user id</param>
+
+		public static void setUserId(string user_id)
+		{
+			#if !DISABLE_GOEDLE
+			if (tracking_enabled)
+				instance.set_user_id(user_id);
+			#endif
+		}
+
 
 		#region internal
 		static goedle_sdk.detail.GoedleAnalytics gio_interface;
@@ -119,9 +135,10 @@ namespace goedle_sdk
             Debug.LogWarning("Your Unity version does not support native plugins. Disabling goedle.io.");
             #endif
 			System.Guid user_id = System.Guid.NewGuid();
+			string app_version = Application.version;
 
 			if (tracking_enabled && gio_interface  == null) {				
-				gio_interface = new goedle_sdk.detail.GoedleAnalytics (api_key, app_key, user_id.ToString("D"));
+				gio_interface = new goedle_sdk.detail.GoedleAnalytics (api_key, app_key, user_id.ToString("D"), app_version);
             }
         }
 

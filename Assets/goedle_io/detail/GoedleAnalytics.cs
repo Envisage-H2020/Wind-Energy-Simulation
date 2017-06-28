@@ -10,22 +10,32 @@ namespace goedle_sdk.detail
 		private string api_key = null;
 		private string app_key = null;
 		private string user_id = null;
+		private string anonymous_id = null;
+		private string app_version = null;
 
-		public GoedleAnalytics (string api_key, string app_key, string user_id)
+		public GoedleAnalytics (string api_key, string app_key, string user_id, string app_version)
 		{
 			this.api_key = api_key;
 			this.app_key = app_key;
 			this.user_id = user_id;
+			this.app_version = app_version;
+
 			track_launch ();
 		}
 
+		public void set_user_id(string user_id){
+			this.anonymous_id = this.user_id;
+			this.user_id = user_id;
+			track (GoedleConstants.IDENTIFY, null, null, false, null, null, this.anonymous_id);
+		}
 
 		public void track_launch ()
 		{
-			track (GoedleConstants.EVENT_NAME_INIT, null, null, true, null, null);
+			track (GoedleConstants.EVENT_NAME_INIT, null, null, true, null, null, null);
 		}
 
-		public void track (string event_name, string event_id, string event_value, bool launch, string trait_key, string trait_value)
+
+		public void track (string event_name, string event_id, string event_value, bool launch, string trait_key, string trait_value, string anonymous_id)
 		{
 			GoedleHttpClient outer = new GoedleHttpClient ();
 			string[] pass = null;
@@ -34,8 +44,11 @@ namespace goedle_sdk.detail
 			int timezone = (int)(((DateTime.UtcNow - DateTime.Now).TotalSeconds) * -1 * 1000);
 			GoedleAtom rt = null;
 			if (launch == true) {
-				rt = new GoedleAtom (app_key, this.user_id, ts, event_name, event_id, event_value, timezone, GoedleConstants.BUILD_NR);
-			} else {
+				rt = new GoedleAtom (app_key, this.user_id, ts, event_name, event_id, event_value, timezone, GoedleConstants.BUILD_NR, app_version);
+			} else if(event_name=="identify" && !string.IsNullOrEmpty (anonymous_id)){
+				rt = new GoedleAtom (app_key, this.user_id, ts, event_value, anonymous_id);
+			} 
+			else {
 				rt = new GoedleAtom (app_key, this.user_id, ts, event_name, event_id, event_value, trait_key, trait_value);
 			}
 			if (rt == null) {
@@ -48,28 +61,25 @@ namespace goedle_sdk.detail
 
 		public void track (string event_name)
 		{
-			track (event_name, null, null, false, null, null);
+			track (event_name, null, null, false, null, null, null);
 		}
-
-
-
+			
 
 		public void track (string event_name, string event_id)
 		{
-			track (event_name, event_id, null, false, null, null);
+			track (event_name, event_id, null, false, null, null, null);
 		}
 
 
 		public void track (string event_name, string event_id, string event_value)
 		{
-			track (event_name, event_id, event_value, false, null, null);
+			track (event_name, event_id, event_value, false, null, null, null);
 
 		}
 
 		public void track (string event_name, string event_id, string event_value, string trait_key, string trait_value)
 		{
-			track ("identify", null, null, false, trait_key, trait_value );
-
+			track (GoedleConstants.IDENTIFY, null, null, false, trait_key, trait_value, null);
 		}
 
 
