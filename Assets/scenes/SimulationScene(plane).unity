@@ -7460,7 +7460,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: normal speed
+  m_Text: fast speed
 --- !u!222 &1043070982
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12474,12 +12474,13 @@ MonoBehaviour:
   windIncreaseIcon: {fileID: 88877883}
   windDecreaseIcon: {fileID: 1707383248}
   minutesCount: 0
-  simulationSpeed: 1
+  simulationSpeed: 3
   powerRequirementsMin: 1000
   powerRequirementsMax: 24000
   spawnManager: {fileID: 58763119}
   powerUsage: -Under power
   income: 3
+  period: 15
 --- !u!4 &1788852838
 Transform:
   m_ObjectHideFlags: 0
@@ -13667,7 +13668,7 @@ MonoBehaviour:
   m_CaptionImage: {fileID: 0}
   m_ItemText: {fileID: 1103850949}
   m_ItemImage: {fileID: 0}
-  m_Value: 0
+  m_Value: 1
   m_Options:
     m_Options:
     - m_Text: normal speed
