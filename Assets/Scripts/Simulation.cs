@@ -40,7 +40,7 @@ public class Simulation : MonoBehaviour {
 	private float startTime;
 	public float minutesCount;
 	private float seconds;
-	public int simulationSpeed = 2;
+	public int simulationSpeed;
 	private float time;
 	private string minutes;
 	private string secondstr;

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.55
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1488818239}
-  m_IndirectSpecularColor: {r: 0.3607874, g: 0.37890592, b: 0.4495501, a: 0.55}
+  m_IndirectSpecularColor: {r: 0.3602402, g: 0.37817964, b: 0.4495768, a: 0.55}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -7460,7 +7460,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: fast speed
+  m_Text: wrap speed
 --- !u!222 &1043070982
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12474,7 +12474,7 @@ MonoBehaviour:
   windIncreaseIcon: {fileID: 88877883}
   windDecreaseIcon: {fileID: 1707383248}
   minutesCount: 0
-  simulationSpeed: 3
+  simulationSpeed: 4
   powerRequirementsMin: 1000
   powerRequirementsMax: 24000
   spawnManager: {fileID: 58763119}
@@ -13668,7 +13668,7 @@ MonoBehaviour:
   m_CaptionImage: {fileID: 0}
   m_ItemText: {fileID: 1103850949}
   m_ItemImage: {fileID: 0}
-  m_Value: 1
+  m_Value: 2
   m_Options:
     m_Options:
     - m_Text: normal speed
