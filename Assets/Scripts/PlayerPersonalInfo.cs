@@ -51,7 +51,8 @@ public class PlayerPersonalInfo : MonoBehaviour {
 				GoedleAnalytics.setUserId (user_id_hash.ToString("D"));
 				GoedleAnalytics.trackTraits ("first_name", playerName);
 				GoedleAnalytics.trackTraits ("last_name", playerSurname);
-				GoedleAnalytics.track ("group", "school", playerSchoolName);
+				GoedleAnalytics.track ("group", playerSchoolName);
+
 			}
 			levelMng.LoadNextLevel();
 		}

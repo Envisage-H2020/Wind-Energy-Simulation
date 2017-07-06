@@ -61,7 +61,8 @@ namespace goedle_sdk.detail
 		}
 
 		public GoedleAtom (string app_key, 
-		                  string user_id, int ts, 
+		                  string user_id, 
+						  int ts, 
 		                  string event_name,
 						  string anonymous_id)
 		{
@@ -83,12 +84,32 @@ namespace goedle_sdk.detail
 						  int ts, 
 		                  string event_name, 
 		                  string event_id, 
-		                  string event_value, 
-		                  string trait_key, 
-		                  string trait_value)
+		                  string event_value)
+		{
+			this.app_key = app_key;
+			this.user_id = user_id; 
+			this.ts = ts;
+			this.event_name = event_name;
+			if (!string.IsNullOrEmpty (event_id))
+				this.event_id = event_id;
+			if (!string.IsNullOrEmpty (event_value))
+				this.event_value = event_value;
+			this.timezone = Int32.MaxValue;
+			this.build_nr = Int32.MaxValue;
+
+		}
+
+		public GoedleAtom (string app_key, 
+			string user_id, 
+			int ts, 
+			string event_name, 
+			string event_id, 
+			string event_value, 
+			string trait_key, 
+			string trait_value)
 		{
 
-		
+
 			this.app_key = app_key;
 			this.user_id = user_id; 
 			this.ts = ts;
