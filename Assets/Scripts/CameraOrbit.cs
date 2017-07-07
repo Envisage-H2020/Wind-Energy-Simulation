@@ -24,7 +24,7 @@ public class CameraOrbit : MonoBehaviour {
 		if (Input.GetMouseButton(1)) {
 			OrbitCamera();
 		}
-		else if (Input.GetKeyDown(KeyCode.C) || Input.GetMouseButton(2)){
+		else if (Input.GetKeyDown(KeyCode.C)){
 			GetDefaultCameraView();	
 		} else if (Input.GetAxis("Mouse ScrollWheel") != 0){
 			float fov= myCamera.fieldOfView;

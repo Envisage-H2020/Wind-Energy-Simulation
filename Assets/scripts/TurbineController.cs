@@ -19,6 +19,11 @@ public class TurbineController : MonoBehaviour {
 
 	public bool isRepaired = false;
 
+	public string turbineClass;
+	public float  turbineEnergyOutput;
+	public float  turbineCost;
+	public float  turbineRotorSize;
+	public string turbineWindClass;
 
 	// Damage 
 	public bool isDamaged = false;
@@ -123,6 +128,8 @@ public class TurbineController : MonoBehaviour {
 		isRotating = true;
 		isConstructed = true;
 		simulation.numberOfTurbinesOperating++;
+
+		transform.GetComponent<BoxCollider> ().enabled = true;
 	}
 
 	public void turbineRepair(){

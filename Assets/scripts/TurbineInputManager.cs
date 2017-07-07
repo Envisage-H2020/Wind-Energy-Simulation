@@ -14,6 +14,8 @@ public class TurbineInputManager : MonoBehaviour {
 	private Vector2 mousePos;
 	private Vector2 canvasPos;
 
+	private GameObject infoQuad;
+	private GameObject infoQuadText;
 
 	[Header ("Materials")]
 	[SerializeField] private Material dafaultMat;
@@ -25,12 +27,20 @@ public class TurbineInputManager : MonoBehaviour {
 		PopUpCanvas.gameObject.SetActive (true);
 		turbineController = GetComponent<TurbineController>();
 		InitializePopUpText();
+
+		infoQuad = transform.Find("InfoQuad").gameObject;
+		infoQuadText = infoQuad.transform.Find("InfoQuadText").gameObject;
+
 	}
 
 	void Update(){
-		//used for highlighting the turbine when is damaged.
+		//used for highlighting the turbine when is damaged.ο
 		if(turbineController.isDamaged)
 			HighlightTurbine(turbineController.isDamaged);
+
+
+		if (infoQuad)
+			infoQuad.transform.LookAt( GameObject.Find("s1_Camera").GetComponent<Camera>().transform.position);
 	}
 
 	//when user clicks the turbine.
@@ -63,6 +73,12 @@ public class TurbineInputManager : MonoBehaviour {
 		displayPopUpText = true;
 		DisplayPopUpText();
 		HighlightTurbine(turbineController.isDamaged);
+
+
+		infoQuad.GetComponent<MeshRenderer> ().enabled = true;
+		infoQuadText.GetComponent<MeshRenderer>().enabled = true;
+
+
 	}
 
 	//when mouse is not over a wind turbine (specifically on the collider of the turbine).
@@ -70,6 +86,10 @@ public class TurbineInputManager : MonoBehaviour {
 		displayPopUpText = false;
 		DisplayPopUpText();
 		HighlightTurbine(turbineController.isDamaged);
+
+
+		infoQuad.GetComponent<MeshRenderer> ().enabled = false;
+		infoQuadText.GetComponent<MeshRenderer>().enabled = false;
 	}
 
 
