@@ -6,7 +6,8 @@ using goedle_sdk;
 
 public class TurbineInputManager : MonoBehaviour {
     
-	public Canvas PopUpCanvas;
+
+
 	private Text popUpText;
 	private Image backgroundImage;
 	private TurbineController turbineController;
@@ -17,12 +18,17 @@ public class TurbineInputManager : MonoBehaviour {
 	private GameObject infoQuad;
 	private GameObject infoQuadText;
 
-	[Header ("Materials")]
-	[SerializeField] private Material defaultMat;
-	[SerializeField] private Material highlightedMat;
-	[SerializeField] private Material transparentMat;
+
+	Material defaultMat;
+	Material highlightedMat;
+	Material transparentMat;
+
+	public Canvas PopUpCanvas;
 
     void Start(){
+
+		PopUpCanvas = transform.Find ("canvas_mouse").GetComponent<Canvas>();
+
 		PopUpCanvas.enabled = false;
 		PopUpCanvas.gameObject.SetActive (true);
 		turbineController = GetComponent<TurbineController>();
@@ -30,6 +36,16 @@ public class TurbineInputManager : MonoBehaviour {
 
 		infoQuad = transform.Find("InfoQuad").gameObject;
 		infoQuadText = infoQuad.transform.Find("InfoQuadText").gameObject;
+
+		defaultMat = new Material (Shader.Find("Diffuse"));
+		defaultMat.CopyPropertiesFromMaterial( transform.Find ("Turbine_Fan").gameObject.GetComponent<Renderer>().material );
+
+
+		highlightedMat = new Material (Shader.Find("Diffuse"));
+		transparentMat = new Material (Shader.Find("Transparent/Diffuse"));
+
+		highlightedMat.color = Color.cyan; 
+		transparentMat.color = Color.black;
 
 	}
 
