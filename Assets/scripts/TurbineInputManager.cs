@@ -18,7 +18,7 @@ public class TurbineInputManager : MonoBehaviour {
 	private GameObject infoQuadText;
 
 	[Header ("Materials")]
-	[SerializeField] private Material dafaultMat;
+	[SerializeField] private Material defaultMat;
 	[SerializeField] private Material highlightedMat;
 	[SerializeField] private Material transparentMat;
 
@@ -63,8 +63,8 @@ public class TurbineInputManager : MonoBehaviour {
 	
 	//when mouse is hovered over a wind turbine the turbine is highlighted.
 	void HighlightTurbine(bool isDamaged){
-		gameObject.transform.Find("Turbine_Fan").GetComponent<Renderer>().material = displayPopUpText ? highlightedMat : (isDamaged ? transparentMat : dafaultMat);
-		gameObject.transform.Find("Turbine_Main").GetComponent<Renderer>().material = displayPopUpText ? highlightedMat : (isDamaged ? transparentMat : dafaultMat);
+		gameObject.transform.Find("Turbine_Fan").GetComponent<Renderer>().material = displayPopUpText ? highlightedMat : (isDamaged ? transparentMat : defaultMat);
+		gameObject.transform.Find("Turbine_Main").GetComponent<Renderer>().material = displayPopUpText ? highlightedMat : (isDamaged ? transparentMat : defaultMat);
 	}
 
 	//when mouse is over a wind turbine without being clicked.

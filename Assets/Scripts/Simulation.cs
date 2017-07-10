@@ -259,6 +259,7 @@ public class Simulation : MonoBehaviour {
 		singleTurbinePower = singlePowerOutput[currentWindSpeed];
 
 		totalPowerOutput = singleTurbinePower * numberOfTurbinesOperating;
+
 		DisplayText("powerOutput");
 	}
 
