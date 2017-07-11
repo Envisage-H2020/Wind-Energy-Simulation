@@ -8,6 +8,7 @@ public class TurbineQuadSelector : MonoBehaviour {
 	public Vector3 rotation = Vector3.zero;
 	private TurbineInputManager turbineInputManager;
 	private TurbineController turbineController;
+	private Simulation simulation;
 
 
 	private GameObject infoQuad;
@@ -16,6 +17,7 @@ public class TurbineQuadSelector : MonoBehaviour {
 	void Start () {
 		turbineInputManager = transform.GetComponentInParent<TurbineInputManager>();
 		turbineController = transform.GetComponentInParent<TurbineController>();
+		simulation  = GameObject.Find("simulator").GetComponent<Simulation>();
 
 		infoQuad = transform.parent.Find("InfoQuad").gameObject;
 		infoQuadText = infoQuad.transform.Find("InfoQuadText").gameObject;
@@ -43,6 +45,8 @@ public class TurbineQuadSelector : MonoBehaviour {
 		if(Input.GetMouseButtonDown(0)){
 			GoedleAnalytics.track ("add.turbine");
 
+			simulation.income -= turbineController.turbineCost;
+
 			turbineInputManager.PopUpCanvas.enabled = true;
 			turbineController.EnableTurbine ("QuadonClick");
 
@@ -58,8 +62,9 @@ public class TurbineQuadSelector : MonoBehaviour {
 						child.gameObject.GetComponent<Renderer> ().enabled = true;
 
 			// Destroy Nearby turbine spots
-			float range = 60; //3*turbineController.turbineRotorSize;
+			float range = 3 * turbineController.turbineRotorSize;
 			GameObject [] producersArray = GameObject.FindGameObjectsWithTag ("producer");
+
       		foreach (GameObject go in producersArray){
 				float distance = Mathf.Sqrt( (transform.position - go.transform.position).sqrMagnitude );
 				if(distance < range && go != transform.parent.gameObject)

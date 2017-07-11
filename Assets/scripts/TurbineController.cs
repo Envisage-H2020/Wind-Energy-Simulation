@@ -25,13 +25,21 @@ public class TurbineController : MonoBehaviour {
 	public float  turbineRotorSize;
 	public string turbineWindClass;
 
+	public float  turbineRepairCost = 0.5f;
+	public float  damageProbCoefficient = 0.005f;
+
 	// Damage 
 	public bool isDamaged = false;
-	private float propabilityMultiplier;
+
 	private float turbineUsage;
-	private int damageStartTime;
+	private int damageStartTime = 60;
 	private float rate; // te rate that the method to damage the turbine will be called
 
+
+	// New Vars
+	public float[] turbineEnergyOutputProfile = new float[28]{0,0,0,0.1f,0.2f,0.3f,0.4f,0.5f,0.6f,0.7f,0.8f,0.9f,1,1.1f,1.2f,1.3f,1.4f,1.5f,1.6f,1.7f,1.8f,1.9f,2,2.1f,2.2f,2.2f,2.2f,2.2f};
+
+	public float turbineCurrEnergyOutput = 0;
 
     // Use this for initialization
     void Start () {
@@ -40,19 +48,11 @@ public class TurbineController : MonoBehaviour {
 		simulation  = GameObject.Find("simulator").GetComponent<Simulation>();
 
 		// Damage
-		damageStartTime = 0;
-		float startCall = Random.Range(0.0f,90.0f);
-		float rate = Random.Range(120.0f,300.0f);
+		float startCall = damageStartTime; //Random.Range(0.0f,90.0f);
+		float rate = 1;       //Random.Range(120.0f,300.0f);
 		InvokeRepeating("CalculateDamagePropability",startCall,rate); 		//Calls the method for the first time in "startCall" with a repeat rate of the "rate" value.		 
 	}
 
-	public void SetRotationSpeed(int windspeed){
-
-		rotSpeed = (float)(windspeed) * (float)GameObject.Find ("simulator").GetComponent<Simulation> ().simulationSpeed / 4;
-
-
-		//animator.SetFloat("speedMultiplier", (float) (windspeed) * (float) GameObject.Find("simulator").GetComponent<Simulation>().simulationSpeed / 20 );
-	}
 
 	void Update(){
 		if (simulation.gamePaused) {
@@ -62,19 +62,24 @@ public class TurbineController : MonoBehaviour {
 			inputManager.enabled = isConstructed;
 
 			//sets the speed of the rotation based on the wind rotation
-			SetRotationSpeed(simulation.currentWindSpeed);
+			rotSpeed = (float)(simulation.currentWindSpeed) * (float)GameObject.Find ("simulator").GetComponent<Simulation> ().simulationSpeed / 8;
+
+			if (isRotating && !isDamaged)
+				turbineCurrEnergyOutput = turbineEnergyOutputProfile [simulation.currentWindSpeed];
+			else
+				turbineCurrEnergyOutput = 0;
 
 			if (isRotating)
 				turbineFan.transform.Rotate ( new Vector3(0,0,rotSpeed), Space.Self); //  Rotate(new Vector3(0,0,rotSpeed));
 
-
 			//used for disables rotation when wind is low
-			if(simulation.currentWindSpeed < 3 && isRotating){
+			if(simulation.currentWindSpeed < 3 && isRotating)
 				DisableOnWindLow();
-			}
-			if(simulation.currentWindSpeed > 3 && !isRotating && lowWindDisabled){
+		
+			 
+			if(simulation.currentWindSpeed > 3 && !isRotating && lowWindDisabled)
 				EnableOnWindHigh();
-			}
+			
 		}
 
 		if(isDamaged && !isEmiting ){
@@ -110,7 +115,7 @@ public class TurbineController : MonoBehaviour {
 	public void repairTurbine(){
 		//decreases total income
 		if(simulation.income >= 1){
-			simulation.income--;
+			simulation.income -= turbineRepairCost;
 			turbineRepair();
 			simulation.damagedTurbines--;
 		}
@@ -149,19 +154,7 @@ public class TurbineController : MonoBehaviour {
 	void CalculateDamagePropability(){
 
 		if(simulation.minutesCount >= damageStartTime && isRotating && !isDamaged && simulation.damagedTurbines <= 4){
-
-			propabilityMultiplier = Random.Range(0.0f,1.0f);
-			turbineUsage = 0.0f;
-			if( string.Compare(simulation.powerUsage,"Over power") == 0 )
-				turbineUsage = 1.3f;
-			else if(string.Compare(simulation.powerUsage,"Correct power") == 0 )
-				turbineUsage = 1.0f;
-			else 
-				turbineUsage = 0.0f;
-
-			float damagePropability = turbineUsage * propabilityMultiplier;
-
-			if(damagePropability > 0.85)
+			if (Random.Range(0.0f,1.0f) < damageProbCoefficient)
 				damageTurbine();
 		}
 	}
@@ -175,3 +168,18 @@ public class TurbineController : MonoBehaviour {
 		simulation.damagedTurbines++;
 	}
 }
+
+
+/// Obsolete way of calculating damage.
+//			turbineUsage = 0.0f;
+//			if( string.Compare(simulation.powerUsage,"Over power") == 0 )
+//				turbineUsage = 1.3f;
+//			else if(string.Compare(simulation.powerUsage,"Correct power") == 0 )
+//				turbineUsage = 1.0f;
+//			else 
+//				turbineUsage = 0.0f;
+//			float damagePropability = turbineUsage * Random.Range(0.0f,1.0f);
+//
+//			if(damagePropability > 0.85)
+//				damageTurbine();
+
