@@ -6,134 +6,96 @@ using goedle_sdk;
 
 public class Simulation : MonoBehaviour {
 
-
-	[Header ("New Variables")]
-	public float totalEnergyProduced = 0;
-	GameObject txt_energyTotal;
-
+	[Header("Income Configuration")]
+	public float totalIncome = 8;
 	public float incomeWhenOverPower = 0.5f;
 	public float incomeWhenCorrectPower = 1;
 	public float incomeWhenUnderPower = 0;
 
-	int calcInterval = 10;
+	[Header("Wind speed configuration")]
+	public float MeanSpeedWind = 5;
+	public float VarSpeedWind = 1f;
+	public int MinSpeedWind = 0;
+	public int MaxSpeedWind = 25;
 
-	// previous power consumption
-	private string prev_power_consumption = " ";
+	[Header("Penalties")]
+	public float accessPenalty = 2;
+	public float archaelogyPenalty = 2;
+	public float naturalReservePenalty = 2;
+	public float hvDistancePenalty = 2;
 
-	[Header ("Text fields")]
-	public Text windText;
-	public Text timeText;
-	public Text powerReqText;
-	public Text powerOutputText;
-	public Text powerUsageText;
-	public Text incomeText;
+	[Header("Internal variables")]
+	public float minutesCount;
+	public int simulationSpeed = 4; 
+	public string powerUsage = "Under power" ;
+	public int currentWindSpeed;   
+	public float totalEnergyProduced = 0;
 
-	[Space]
-	[Header ("Action added Text")] // the text that is displayed for 2 seconds(upon the minimap) when interacting with the turbine.
-
-	//the side text next to the panel of the output power.
-	public Text powerOutputSideText;
-	public Image powerOutputsideImage;
-
-	[Space]
-	[Header ("Simulation variables")]
-
-
-	/* Turbines operating */
+	[Header("Internals")]
 	public int numberOfTurbinesOperating = 0;
 	public int damagedTurbines = 0;
 
 	/* pause vars */
 	public bool gamePaused = false;
-	private int prevSimulationSpeed = 1;
 
-	/* =====================================
-			wind simulation fields
-	======================================*/
-	public int windMinSpeed = 4;
-	public int windMaxSpeed = 16;
+	private Color red = new Color(2,0,0,1);
+	private Color green = new Color (0, 118, 0, 255);
+	private Color blue = Color.blue;
 
-	public int currentWindSpeed;
+	Text txt_energyTotal;
+	Text windText;
+	Text timeText;
+	Text powerReqText;
+	Text powerOutputText;
+	Text powerUsageText;
+	Text incomeText;
+	Text powerOutputSideText;
+	Text wind_mean_var;
+	Image powerOutputsideImage;
 
-	public float MeanSpeedWind = 5f;
-	public float VarSpeedWind  = 0.1f;
-	public float MinSpeedWind = 0;
-	public float MaxSpeedWind = 0;
+	float startTime;
+	float currentPowerReqs;
+	float totalPowerOutput;
+	float prevtotalPowerOutput;
+	string prev_power_consumption = " ";
+	int prevSimulationSpeed;
 
 
-	// 0 = wind speed is decreasing, 1 = is increasing.
-//	private int windChangeDirection = 0; 
-//	private int windChangeCounter = 2;
-//	public Image windIncreaseIcon;
-//	public Image windDecreaseIcon;
-
-	 /* =====================================
-			time simulation fields
-	======================================*/
-	private float startTime;
-	public float minutesCount;
-	private float seconds;
-	public int simulationSpeed = 1;
-	private float time;
-	private string minutes;
-	private string secondstr;
-	 
-	/*=====================================
-		power Reqs simulation fields
-	======================================*/
-//	public int powerRequirementsMin = 1000;
-//	public int powerRequirementsMax = 24000;
-	private int	currentPowerReqs;
-//	private int	powerChangeDirection = 0;
-//	private int	powerChangeCounter = 2;
-//    private int singleTurbinePower = 0;
-
-	/* =====================================
-		power Output simulation fields
-	======================================*/
-//	private int[] singlePowerOutput = {0,0,50,100,200,400,700,1000,1500,2000,2300,2400,2450,2500,2500,2500,2500,2500,2500,2500,2500};
-    private float totalPowerOutput;
-	private float prevtotalPowerOutput;
-	public string powerUsage = "Under power" ; //TODO : maybe this can be changed to a enum, but it will less readable to the next developer that gets the source code.
-    public float income = 8;
-
-	// The colors for the power usage text.
-	private Color red;
-	private Color green;
-	private Color blue;
+	int calcInterval = 5;
 
     void Start(){
 
+		totalIncome -=  accessPenalty - archaelogyPenalty - naturalReservePenalty - hvDistancePenalty;
+
+		prevSimulationSpeed = simulationSpeed;
+
+		windText = GameObject.Find("s1_txt_wind_value").GetComponent<Text>();
+		wind_mean_var = GameObject.Find("s1_txt_wind_mean_var").GetComponent<Text>();
+		timeText = GameObject.Find("s1_txt_time_value").GetComponent<Text>();
+		powerReqText = GameObject.Find("s1_txt_pow_req_value").GetComponent<Text>();
+		powerOutputText = GameObject.Find("s1_txt_pow_output_value").GetComponent<Text>();
+		powerUsageText = GameObject.Find("PowerUsageText").GetComponent<Text>();
+		incomeText = GameObject.Find("s1_txt_income_value").GetComponent<Text>();
+		powerOutputSideText = GameObject.Find("sideText").GetComponent<Text>();
+		powerOutputsideImage = GameObject.Find("sideImage").GetComponent<Image>();
+		txt_energyTotal = GameObject.Find ("s1_txt_energy_value").GetComponent<Text>();
+
 		Time.timeScale = simulationSpeed;
 
+		txt_energyTotal.text = "0";
 
-		txt_energyTotal = GameObject.Find ("txt_energyTotal");
-		txt_energyTotal.GetComponent<Text>().text = "0";
+		wind_mean_var.text = "" + MeanSpeedWind + " \u00B1 " + VarSpeedWind;
 
 		powerOutputSideText.enabled = false;
 		powerOutputsideImage.enabled = false;
-		//the icons that display wind change
-
-		//initialize values to random prices.
-		//currentPowerReqs = Random.Range(10200,15200);
-		//currentWindSpeed = Random.Range(10,12);
 
 		startTime = Time.time;
-
-		//initialize color(used as text colors)
-		red = new Color(2,0,0,1);
-		green = new Color(0,118,0,255);
-		blue = Color.blue;
 	}
 
 	void Awake() {
-		//float firstExecution = 0.0f;
-		//float repeatRate = 15.0f;
-		//call methods to simulate simulation values (wind , power reqs, income).
-
-		InvokeRepeating("CalculateWindSpeed",0,5);
-		InvokeRepeating("CalculatePowerRequirements",0,calcInterval);
-		InvokeRepeating("incomeCalculation", 0 , 20);
+		InvokeRepeating("CalculateWindSpeed", 0, calcInterval);
+		InvokeRepeating ("sumConsumersPower", 0, calcInterval); 
+		InvokeRepeating("incomeCalculation",  0, calcInterval);
 	}
 	
 
@@ -144,7 +106,7 @@ public class Simulation : MonoBehaviour {
 		CalculateTime();
 
 		if (prevtotalPowerOutput != totalPowerOutput) {
-			StartCoroutine (calculateAddedPower ());
+			//StartCoroutine (calculateAddedPower ());
 			prevtotalPowerOutput = totalPowerOutput;
 		}
 
@@ -175,108 +137,72 @@ public class Simulation : MonoBehaviour {
 //		CalculatePowerUsage();
 //	}
 
-	/* =====================================
-			Calculate Time flow
-	===================================== */
+	/*  Calculate Time flow  */
 	void CalculateTime(){
 		Time.timeScale = simulationSpeed;
-		time = Time.time - startTime ;
-		minutes = ((int) (time/60)).ToString();
+		float time = Time.time - startTime ;
+		string minutes = ((int) (time/60)).ToString();
 		minutesCount = ((int) (time/60));
-		seconds = (time%60);
-		secondstr = ((int)seconds).ToString("D2");
+		float seconds = (time%60);
+		string secondstr = ((int)seconds).ToString("D2");
 		timeText.text = minutes + ":" +secondstr ;
 	}
 
 
-	/* =====================================
-			Wind speed calculation
-	===================================== */
+	/* Wind speed calculation */
 	void CalculateWindSpeed(){
 		currentWindSpeed = (int) (NextGaussianFloat () * Mathf.Sqrt (VarSpeedWind) + MeanSpeedWind);
+
+		// apply limits
+		currentWindSpeed = currentWindSpeed <= MinSpeedWind ? MinSpeedWind : currentWindSpeed;
+		currentWindSpeed = currentWindSpeed >= MaxSpeedWind ? MaxSpeedWind : currentWindSpeed;
+
 		DisplayText("wind");	
 	}
 
 
-	/* =====================================
-		Power requirements calculation
-	===================================== */
-	void CalculatePowerRequirements(){
+	/* Power requirements calculation */
+	void sumConsumersPower(){
 
-		calculateOutputPower ();
+		sumProducersPower ();
 
 		GameObject[] allconsumers = GameObject.FindGameObjectsWithTag ("consumer");
 		currentPowerReqs = 0;
 
 		foreach (GameObject c in allconsumers)
-			currentPowerReqs += (int) c.transform.GetComponentInParent<ConsumerScript> ().CurrPowerConsume;
+			currentPowerReqs += c.transform.GetComponentInParent<ConsumerScript> ().CurrPowerConsume;
 
-		CalculatePowerUsage();
+		evalBalance();
 
 		DisplayText("powerReqs");
 	}
 
-	/* =====================================
-		Calculate power Output
-	===================================== */
-	void calculateOutputPower(){
+	/* Calculate power Output */
+	void sumProducersPower(){
 
 		GameObject[] allproducers = GameObject.FindGameObjectsWithTag ("producer");
 
 		totalPowerOutput = 0;
 		foreach (GameObject p in allproducers)
 			totalPowerOutput += p.transform.GetComponentInParent<TurbineController> ().turbineCurrEnergyOutput;
-		
 
-		Debug.Log ("totalPowerOutput:" + totalPowerOutput);
-
-		totalEnergyProduced +=  totalPowerOutput * 60 / simulationSpeed / calcInterval;
-
-
-		Debug.Log ("totalEnergyProduced:" + totalEnergyProduced);
+		totalEnergyProduced += totalPowerOutput * simulationSpeed / 60;
 
 		DisplayText("powerOutput");
 	}
 
-	/* displays the added power output to the total amount 
-	that each turbine is producing (text above the power output)*/
-    public IEnumerator calculateAddedPower()
-    {
-		float addedAmount = totalPowerOutput - prevtotalPowerOutput;       //singlePowerOutput[currentWindSpeed];
-
-		powerOutputSideText.text = " + " + (addedAmount).ToString();
-
-
-		powerOutputSideText.enabled = true;
-		powerOutputsideImage.enabled = true;
-		yield return new WaitForSeconds(2f);
-		powerOutputSideText.enabled = false;
-		powerOutputsideImage.enabled = false;
-    }
-
-
-	public IEnumerator calculateSubstractedPower()
-    {
-		float substractedAmount = totalPowerOutput - prevtotalPowerOutput; // singlePowerOutput[currentWindSpeed];
-		powerOutputSideText.text = " - " + (substractedAmount).ToString();
-		powerOutputSideText.enabled = true;
-		powerOutputsideImage.enabled = true;
-		yield return new WaitForSeconds(2f);
-		powerOutputSideText.enabled = false;
-		powerOutputsideImage.enabled = false;
-    }
 
     /* 	Calculate income */
     void incomeCalculation(){
 
 		if(string.Equals(powerUsage,"Under power"))
-			income += incomeWhenUnderPower;
+			totalIncome += incomeWhenUnderPower;
 	
 		if(string.Equals(powerUsage,"Correct power"))
-			income += incomeWhenCorrectPower;
+			totalIncome += incomeWhenCorrectPower;
 
 		if(string.Equals(powerUsage,"Over power"))
-			income += incomeWhenOverPower;
+			totalIncome += incomeWhenOverPower;
 
 
 		DisplayText("income");
@@ -287,8 +213,8 @@ public class Simulation : MonoBehaviour {
 		Calculate power Usage
 	=====================================
 	*/
-	void CalculatePowerUsage(){
-		calculateOutputPower();
+	void evalBalance(){
+		sumProducersPower();
 
 		float localpowerDiff = totalPowerOutput - currentPowerReqs;
 
@@ -296,7 +222,7 @@ public class Simulation : MonoBehaviour {
 			powerUsage = "Under power";
 			powerUsageText.color = red;
 		}
-		else if( Mathf.Abs(totalPowerOutput - currentPowerReqs) < 1){
+		else if( localpowerDiff > 1.2 * currentPowerReqs){   
 			powerUsage = "Over power";
 			powerUsageText.color = blue;
 		}
@@ -307,30 +233,24 @@ public class Simulation : MonoBehaviour {
 		DisplayText("powerUsage");
 	}
 
-	/* 
-	===========================================
-		Display text based on the given string
-	===========================================
-	*/
+	/*  Display text based on the given string */
 	void DisplayText(string whatTypeToDisplay){
 		
 		if(string.Equals(whatTypeToDisplay,"wind")){
-			windText.text = currentWindSpeed.ToString();
+			windText.text = currentWindSpeed.ToString() + " m/sec";
 		}
 		else if(string.Equals(whatTypeToDisplay,"powerOutput")){
-			powerOutputText.text = totalPowerOutput.ToString("0.0");
-
+			powerOutputText.text = totalPowerOutput.ToString("0.0") + " MW";
 			txt_energyTotal.GetComponent<Text> ().text = totalEnergyProduced.ToString("0.0") + " MWh";
-
 		}
 		else if(string.Equals(whatTypeToDisplay,"powerReqs")){
-			powerReqText.text = currentPowerReqs.ToString("0.0");
+			powerReqText.text = currentPowerReqs.ToString("0.0") + " MW";
 		}
 		else if(string.Equals(whatTypeToDisplay,"powerUsage")){
 			powerUsageText.text = powerUsage;
 		}
 		else if(string.Equals(whatTypeToDisplay,"income")){
-			incomeText.text = income.ToString();
+			incomeText.text = "$" + totalIncome.ToString();
 		}
 		else{
 			Debug.Log("wrong input at DisplayText() , check given parameters");
@@ -357,7 +277,7 @@ public class Simulation : MonoBehaviour {
 
 	public static float NextGaussianFloat()
 	{
-		float U, u, v, S;
+		float u, v, S;
 		do
 		{
 			u = 2.0f * Random.value - 1.0f;
@@ -471,3 +391,30 @@ public class Simulation : MonoBehaviour {
 //		Debug.Log("wrong input at CalculateBarriers() , check given parameters");
 //	}
 //}
+
+//	/* displays the added power output to the total amount 
+//	that each turbine is producing (text above the power output)*/
+//    public IEnumerator calculateAddedPower()
+//    {
+//		float addedAmount = totalPowerOutput - prevtotalPowerOutput;       //singlePowerOutput[currentWindSpeed];
+//
+//		powerOutputSideText.text = " + " + (addedAmount).ToString();
+//
+//		powerOutputSideText.enabled = true;
+//		powerOutputsideImage.enabled = true;
+//		yield return new WaitForSeconds(2f);
+//		powerOutputSideText.enabled = false;
+//		powerOutputsideImage.enabled = false;
+//    }
+
+
+//	public IEnumerator calculateSubstractedPower()
+//    {
+//		float substractedAmount = totalPowerOutput - prevtotalPowerOutput; // singlePowerOutput[currentWindSpeed];
+//		powerOutputSideText.text = " - " + (substractedAmount).ToString();
+//		powerOutputSideText.enabled = true;
+//		powerOutputsideImage.enabled = true;
+//		yield return new WaitForSeconds(2f);
+//		powerOutputSideText.enabled = false;
+//		powerOutputsideImage.enabled = false;
+//    }

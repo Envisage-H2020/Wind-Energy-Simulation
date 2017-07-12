@@ -14,7 +14,7 @@ public class PlayerStatistics : MonoBehaviour {
     void Start () {
 		endSimulation = false;
 		if(!SceneManager.GetActiveScene().name.Equals("S_Reward")){ // if not the last scene
-			simulation = GameObject.Find("simulator").GetComponent<Simulation>();
+			simulation = GameObject.FindGameObjectsWithTag("terrain")[0].GetComponent<Simulation>();
 			InitializeCountValues();
 			InvokeRepeating("CalculatePowerUsageStatistics", 0.0f, 1.0f);
 		}

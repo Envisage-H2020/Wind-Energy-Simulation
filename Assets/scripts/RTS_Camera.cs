@@ -12,12 +12,12 @@ namespace RTS_Cam
 
         #region Movement
 
-        public float keyboardMovementSpeed = 50f; //speed with keyboard movement
-        public float screenEdgeMovementSpeed = 3f; //spee with screen edge movement
-        public float followingSpeed = 5f; //speed when following a target
-        public float rotationSped = 3f;
-        public float panningSpeed = 150f;
-        public float mouseRotationSpeed = 20f;
+        float keyboardMovementSpeed = 50f; //speed with keyboard movement
+        float screenEdgeMovementSpeed = 50f; //spee with screen edge movement
+        float followingSpeed = 50f; //speed when following a target
+        float rotationSped = 2f;
+        float panningSpeed = 100f;
+        float mouseRotationSpeed = 10f;
 
         #endregion
 
@@ -26,21 +26,21 @@ namespace RTS_Cam
         public bool autoHeight = true;
         public LayerMask groundMask = -1; //layermask of ground or other objects that affect height
 
-        public float maxHeight = 100f; //maximal height
-        public float minHeight = 15f; //minimnal height
-        public float heightDampening = 5f; 
-        public float keyboardZoomingSensitivity = 5f;
-        public float scrollWheelZoomingSensitivity = 25f;
+        float maxHeight = 500f; //maximal height
+        float minHeight = 10f; //minimnal height
+        float heightDampening = 5f; 
+        float keyboardZoomingSensitivity = 2f;
+        float scrollWheelZoomingSensitivity = 5f;
 
-        public float zoomPos = 0; //value in range (0, 1) used as t in Matf.Lerp
+        float zoomPos = 0.5f; //value in range (0, 1) used as t in Matf.Lerp
 
         #endregion
 
         #region MapLimits
 
         public bool limitMap = true;
-        public float limitX = 50f; //x limit of map
-        public float limitY = 50f; //z limit of map
+        float limitX = 1000f; //x limit of map
+        float limitY = 1000f; //z limit of map
 
         #endregion
 
@@ -65,7 +65,7 @@ namespace RTS_Cam
         #region Input
 
         public bool useScreenEdgeInput = true;
-        public float screenEdgeBorder = 25f;
+        float screenEdgeBorder = 25f;
 
         public bool useKeyboardInput = true;
         public string horizontalAxis = "Horizontal";

@@ -11,27 +11,45 @@ public class ConsumerScript : MonoBehaviour {
 	public float MaxPowerConsume = 1f;
 	public float CurrPowerConsume = 0.5f;
 
+	private GameObject infoQuad;
+	private GameObject infoQuadText;
+
+	void Awake(){
+		InvokeRepeating("updateInfoConsumerText", 0,5);
+	}
 
 	// Use this for initialization
 	void Start () {
-		
+
+		infoQuad = transform.Find("InfoQuad").gameObject;
+		infoQuadText = infoQuad.transform.Find("InfoQuadText").gameObject;
+
+		infoQuadText.GetComponent<TextMesh> ().text = MeanPowerConsume + " MW\n" + "\u00B1" + "\n" + VarPowerConsume + " MW";
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		CurrPowerConsume = NextGaussianFloat () * Mathf.Sqrt (VarPowerConsume) + MeanPowerConsume;
 
-		if (CurrPowerConsume > MaxPowerConsume)
-			CurrPowerConsume = MaxPowerConsume;
-		else if (CurrPowerConsume < MinPowerConsume)
-			CurrPowerConsume = MinPowerConsume;
+		// Apply limits
+		CurrPowerConsume = CurrPowerConsume > MaxPowerConsume ? MaxPowerConsume : CurrPowerConsume;
+		CurrPowerConsume = CurrPowerConsume < MinPowerConsume ? MinPowerConsume : CurrPowerConsume;
+
+		infoQuad.transform.LookAt (GameObject.Find ("s1_Camera").GetComponent<Camera> ().transform.position);
+
+
 	}
+
+
+	void updateInfoConsumerText(){
+		//infoQuadText.GetComponent<TextMesh>().text = CurrPowerConsume.ToString ("0.0") + " MW";  
+	}
+
 
 
 	public static float NextGaussianFloat()
 	{
-		float U, u, v, S;
-
+		float u, v, S;
 		do
 		{
 			u = 2.0f * Random.value - 1.0f;
@@ -40,9 +58,7 @@ public class ConsumerScript : MonoBehaviour {
 		}
 		while (S >= 1.0f);
 
-
 		float fac = Mathf.Sqrt(-2.0f *  Mathf.Log((float) S) / (float)S);
-
 		return u * fac;
 	}
 }

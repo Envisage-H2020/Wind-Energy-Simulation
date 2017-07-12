@@ -45,7 +45,7 @@ public class TurbineController : MonoBehaviour {
     void Start () {
 		inputManager = GetComponent<TurbineInputManager>();
 		turbineFan = transform.Find ("Turbine_Fan").transform.gameObject;
-		simulation  = GameObject.Find("simulator").GetComponent<Simulation>();
+		simulation  = GameObject.FindGameObjectsWithTag("terrain")[0].GetComponent<Simulation>();
 
 		// Damage
 		float startCall = damageStartTime; //Random.Range(0.0f,90.0f);
@@ -62,7 +62,7 @@ public class TurbineController : MonoBehaviour {
 			inputManager.enabled = isConstructed;
 
 			//sets the speed of the rotation based on the wind rotation
-			rotSpeed = (float)(simulation.currentWindSpeed) * (float)GameObject.Find ("simulator").GetComponent<Simulation> ().simulationSpeed / 8;
+			rotSpeed = (float)(simulation.currentWindSpeed) * (float)simulation.simulationSpeed / 8;
 
 			if (isRotating && !isDamaged)
 				turbineCurrEnergyOutput = turbineEnergyOutputProfile [simulation.currentWindSpeed];
@@ -114,22 +114,22 @@ public class TurbineController : MonoBehaviour {
 
 	public void repairTurbine(){
 		//decreases total income
-		if(simulation.income >= 1){
-			simulation.income -= turbineRepairCost;
+		if(simulation.totalIncome >= 1){
+			simulation.totalIncome -= turbineRepairCost;
 			turbineRepair();
 			simulation.damagedTurbines--;
 		}
 	}
 
 	public void DisableTurbine(){
-		StartCoroutine(simulation.calculateSubstractedPower());
+		//StartCoroutine(simulation.calculateSubstractedPower());
     	isRotating = false;
 		simulation.numberOfTurbinesOperating--;	
 	}
 
 	public void EnableTurbine(string who){
 		//used to display the numbers for the output values next to the minimap
-		StartCoroutine(simulation.calculateAddedPower());
+		//StartCoroutine(simulation.calculateAddedPower());
 		isRotating = true;
 		isConstructed = true;
 		simulation.numberOfTurbinesOperating++;

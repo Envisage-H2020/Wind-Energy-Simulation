@@ -14,25 +14,34 @@ public class TurbineQuadSelector : MonoBehaviour {
 	private GameObject infoQuad;
 	private GameObject infoQuadText;
 
+	void Awake(){
+		InvokeRepeating("updateInfoText", 0,5);
+	}
+
 	void Start () {
 		turbineInputManager = transform.GetComponentInParent<TurbineInputManager>();
 		turbineController = transform.GetComponentInParent<TurbineController>();
-		simulation  = GameObject.Find("simulator").GetComponent<Simulation>();
+		simulation  = GameObject.FindGameObjectsWithTag("terrain")[0].GetComponent<Simulation>();
 
 		infoQuad = transform.parent.Find("InfoQuad").gameObject;
 		infoQuadText = infoQuad.transform.Find("InfoQuadText").gameObject;
 
-		infoQuadText.GetComponent<TextMesh>().text =   
-			"	<b>Class " + turbineController.turbineClass + "</b>\n" +
-			"<color=blue>\n<b>Output: </b>" + turbineController.turbineEnergyOutput + 
-			" MW\n<b>Cost   : </b>$ " + turbineController.turbineCost +
-			"\n<b>Rotor  : </b>" + turbineController.turbineRotorSize + " m\n" + 
-			"<b>Wind   : </b>" +  turbineController.turbineWindClass  + "m/s\n</color>";
+		updateInfoText ();
 	}
 
 	void Update () {
-		if (infoQuad)
-			infoQuad.transform.LookAt( GameObject.Find("s1_Camera").GetComponent<Camera>().transform.position);
+		infoQuad.transform.LookAt (GameObject.Find ("s1_Camera").GetComponent<Camera> ().transform.position);
+	}
+
+
+	void updateInfoText(){
+		infoQuadText.GetComponent<TextMesh>().text =   
+				"	<b>Class " + turbineController.turbineClass + "</b>\n" +
+				"<color=blue>\n<b>Output:</b>" + turbineController.turbineEnergyOutput + " (" +
+				turbineController.turbineCurrEnergyOutput + ")" +
+				" MW\n<b>Cost   : </b>$ " + turbineController.turbineCost +
+				"\n<b>Rotor  : </b>" + turbineController.turbineRotorSize + " m\n" + 
+				"<b>Wind   : </b>" +  turbineController.turbineWindClass  + "m/s\n</color>";
 	}
 
 	void OnMouseOver(){
@@ -45,7 +54,7 @@ public class TurbineQuadSelector : MonoBehaviour {
 		if(Input.GetMouseButtonDown(0)){
 			GoedleAnalytics.track ("add.turbine");
 
-			simulation.income -= turbineController.turbineCost;
+			simulation.totalIncome -= turbineController.turbineCost;
 
 			turbineInputManager.PopUpCanvas.enabled = true;
 			turbineController.EnableTurbine ("QuadonClick");
@@ -54,7 +63,9 @@ public class TurbineQuadSelector : MonoBehaviour {
 			infoQuadText.GetComponent<MeshRenderer>().enabled = false;
 
 			// Inactivate the Quad
-			gameObject.SetActive (false);
+			//gameObject.SetActive (false);
+			gameObject.GetComponent<MeshCollider> ().enabled = false;
+			gameObject.GetComponent<MeshRenderer> ().enabled = false;
 
 			// Enable the Visuals of the turbine
 			foreach (Transform child in transform.parent.gameObject.transform) 

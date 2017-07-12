@@ -37,12 +37,15 @@ public class TurbineInputManager : MonoBehaviour {
 		infoQuad = transform.Find("InfoQuad").gameObject;
 		infoQuadText = infoQuad.transform.Find("InfoQuadText").gameObject;
 
-		defaultMat = new Material (Shader.Find("Diffuse"));
+		defaultMat = new Material (Shader.Find("Standard"));
+		highlightedMat = new Material (Shader.Find("Standard"));
+		transparentMat = new Material (Shader.Find("Standard"));
+
+
 		defaultMat.CopyPropertiesFromMaterial( transform.Find ("Turbine_Fan").gameObject.GetComponent<Renderer>().material );
 
 
-		highlightedMat = new Material (Shader.Find("Diffuse"));
-		transparentMat = new Material (Shader.Find("Transparent/Diffuse"));
+
 
 		highlightedMat.color = Color.cyan; 
 		transparentMat.color = Color.black;
