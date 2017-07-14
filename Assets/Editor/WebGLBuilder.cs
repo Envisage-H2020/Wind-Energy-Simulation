@@ -1,12 +1,15 @@
 ﻿//place this script in the Editor folder within Assets.
-using UnityEditor;
-
 
 //to be used on the command line:
 //$ Unity -quit -batchmode -executeMethod WebGLBuilder.build
 
+
+using UnityEditor;
+
 class WebGLBuilder {
 	static void build() {
+		
+		AssetDatabase.Refresh();
 		
 		string[] scenes = {"Assets/scenes/S_MainMenu.unity", 
 							"Assets/scenes/S_Login.unity",
@@ -17,7 +20,7 @@ class WebGLBuilder {
 							"Assets/scenes/S_Settings.unity",
 							"Assets/scenes/S_SceneSelector.unity"};
 		
-		string pathToDeploy = "builds/WebGLversion/"		
+		string pathToDeploy = "builds/WebGLversion/";		
 				
 		BuildPipeline.BuildPlayer(scenes, pathToDeploy, BuildTarget.WebGL, BuildOptions.None);
 	}
