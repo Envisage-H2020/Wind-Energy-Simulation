@@ -4,7 +4,7 @@
 QualitySettings:
   m_ObjectHideFlags: 0
   serializedVersion: 5
-  m_CurrentQuality: 4
+  m_CurrentQuality: 3
   m_QualitySettings:
   - serializedVersion: 2
     name: Fastest
@@ -31,9 +31,7 @@ QualitySettings:
     particleRaycastBudget: 4
     asyncUploadTimeSlice: 2
     asyncUploadBufferSize: 4
-    excludedTargetPlatforms:
-    - Standalone
-    - WebGL
+    excludedTargetPlatforms: []
   - serializedVersion: 2
     name: Fast
     pixelLightCount: 0
@@ -59,8 +57,7 @@ QualitySettings:
     particleRaycastBudget: 16
     asyncUploadTimeSlice: 2
     asyncUploadBufferSize: 4
-    excludedTargetPlatforms:
-    - WebGL
+    excludedTargetPlatforms: []
   - serializedVersion: 2
     name: Simple
     pixelLightCount: 1
@@ -138,8 +135,7 @@ QualitySettings:
     particleRaycastBudget: 1024
     asyncUploadTimeSlice: 2
     asyncUploadBufferSize: 4
-    excludedTargetPlatforms:
-    - WebGL
+    excludedTargetPlatforms: []
   - serializedVersion: 2
     name: Fantastic
     pixelLightCount: 4
@@ -165,16 +161,15 @@ QualitySettings:
     particleRaycastBudget: 4096
     asyncUploadTimeSlice: 2
     asyncUploadBufferSize: 4
-    excludedTargetPlatforms:
-    - WebGL
+    excludedTargetPlatforms: []
   m_PerPlatformDefaultQuality:
-    Android: 2
+    Android: 3
     Nintendo 3DS: 5
     PS4: 5
     PSM: 5
     PSP2: 2
     Samsung TV: 2
-    Standalone: 5
+    Standalone: 3
     Tizen: 2
     Web: 5
     WebGL: 3

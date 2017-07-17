@@ -188,7 +188,7 @@ GameObject:
   - component: {fileID: 234253476}
   - component: {fileID: 234253475}
   m_Layer: 0
-  m_Name: dropdown_details_level
+  m_Name: dropdown_quality
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -256,14 +256,16 @@ MonoBehaviour:
   m_CaptionImage: {fileID: 0}
   m_ItemText: {fileID: 897043281}
   m_ItemImage: {fileID: 0}
-  m_Value: 0
+  m_Value: 2
   m_Options:
     m_Options:
     - m_Text: Fantastic
       m_Image: {fileID: 0}
     - m_Text: Beautiful
       m_Image: {fileID: 0}
-    - m_Text: Average
+    - m_Text: Good
+      m_Image: {fileID: 0}
+    - m_Text: Simple
       m_Image: {fileID: 0}
     - m_Text: Fast
       m_Image: {fileID: 0}
@@ -271,7 +273,18 @@ MonoBehaviour:
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 236975475}
+        m_MethodName: onQualityChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Dropdown+DropdownEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &234253476
@@ -317,6 +330,7 @@ GameObject:
   - component: {fileID: 236975472}
   - component: {fileID: 236975474}
   - component: {fileID: 236975473}
+  - component: {fileID: 236975475}
   m_Layer: 0
   m_Name: Panel
   m_TagString: Untagged
@@ -383,6 +397,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 236975471}
+--- !u!114 &236975475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 236975471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22202b29466311349a69b9b63798efe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &284238527
 GameObject:
   m_ObjectHideFlags: 0
@@ -739,7 +764,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Fantastic
+  m_Text: Good
 --- !u!222 &485114369
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2010,8 +2035,8 @@ Camera:
   m_GameObject: {fileID: 1238561218}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -2418,7 +2443,18 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 236975475}
+        m_MethodName: onWindowedChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_IsOn: 1
@@ -2576,10 +2612,18 @@ MonoBehaviour:
   m_CaptionImage: {fileID: 0}
   m_ItemText: {fileID: 2145839079}
   m_ItemImage: {fileID: 0}
-  m_Value: 0
+  m_Value: 3
   m_Options:
     m_Options:
+    - m_Text: 1024 x 768
+      m_Image: {fileID: 0}
+    - m_Text: 1280 x 800
+      m_Image: {fileID: 0}
+    - m_Text: 1280 x 1024
+      m_Image: {fileID: 0}
     - m_Text: 1366 x 768
+      m_Image: {fileID: 0}
+    - m_Text: 1440 x 900
       m_Image: {fileID: 0}
     - m_Text: 1920 x 1080
       m_Image: {fileID: 0}
@@ -2587,7 +2631,18 @@ MonoBehaviour:
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 236975475}
+        m_MethodName: onResolutionChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Dropdown+DropdownEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1605153775
