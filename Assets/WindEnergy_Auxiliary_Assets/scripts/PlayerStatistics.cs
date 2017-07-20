@@ -8,10 +8,17 @@ public class PlayerStatistics : MonoBehaviour {
 	public static int underPowerSec;
     public static int correctPowerSec;
     public static int overPowerSec;
+	public static float moneyEarned;
+	public static float energyProduced;
+
     public bool endSimulation = false;
   
     // Use this for initialization
     void Start () {
+
+
+
+
 		endSimulation = false;
 		if(!SceneManager.GetActiveScene().name.Equals("S_Reward")){ // if not the last scene
 			simulation = GameObject.FindGameObjectsWithTag("terrain")[0].GetComponent<Simulation>();
@@ -28,6 +35,8 @@ public class PlayerStatistics : MonoBehaviour {
 		underPowerSec = 0;
 		correctPowerSec = 0;
 		overPowerSec = 0;
+		moneyEarned = 0;
+		energyProduced = 0;
 	}
 
 
@@ -56,6 +65,11 @@ public class PlayerStatistics : MonoBehaviour {
 	*/
  	void CalculatePowerUsageStatistics(){
 		if( !SceneManager.GetActiveScene().name.Equals("S_Reward") ){
+
+			moneyEarned = simulation.totalIncome;
+			energyProduced = simulation.totalEnergyProduced;
+
+
 			if(string.Equals(simulation.powerUsage,"Under power")){
 				underPowerSec++;
 			}

@@ -533,14 +533,13 @@ MonoBehaviour:
     source. The idea is to have the correct amount of power - not too little, or not
     too much - while both wind and the power requirements of the town are constantly
     fluctuating. \n\nTo understand if you produce the desired amount of power needed,
-    the minimap on the left corner of the screen that points to the city, highlights
-    the buildings based on your action, with the respective color.<color=\"green\">
-    Your goal is to stay in a \"correct power\" amount output as long as possible.</color>
-    The simulation ends after 24 minutes(real time) in normal speed, choose fast or
-    warp speed for faster.\n\n<b>- Left mouse click</b> : Interact with wind turbine
-    (turn on/off , repair).\n<b>- Right mouse click</b> : Hold and move to rotate
-    the camera around the wind farm.\n<b>- Middle mouse click or 'c' button</b>: Return
-    to default camera view. "
+    the building turn red if <color=red>underpower</color>, normal color if correct
+    powered, and <color=blue>blue</color> if overpowered. Your goal is to stay in
+    a \"correct power\" amount output as long as possible. The simulation ends after
+    6 minutes.\n\n<b>- Left mouse click</b> : Interact with wind turbine (build, turn
+    on/off , repair).\n<b>- Right mouse click</b> : Hold and move to rotate the camera.\n<b>-
+    Scroll wheel</b>: Change altitude of the camera.\n<b>- Pointer to screen edges</b>:
+    Move camera in the scene."
 --- !u!222 &1447511479
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -601,7 +600,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: a395f63c28191a04183ce478917a4a65, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 142eb1cbaba0bb144ab4cf07f13b990a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

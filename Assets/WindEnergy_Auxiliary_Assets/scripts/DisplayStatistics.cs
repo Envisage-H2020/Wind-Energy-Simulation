@@ -8,15 +8,28 @@ public class DisplayStatistics : MonoBehaviour {
 	public Text correctPowerUsageText;
 	public Text overPowerUsageText;
 	public Text usage;
+	public Text moneyEarnedText;
+	public Text energyProducedText;
+
     private int underPowerMin;
     private int correctPowerMin;
     private int overPowerMin;
     private int underPowerSec;
     private int correctPowerSec;
     private int overPowerSec;
+	private float moneyEarned;
+	private float energyProduced;
 
     // Use this for initialization
     void Start () {
+
+		underPowerUsageText = GameObject.Find("txt_underpower").GetComponent<Text>();
+		correctPowerUsageText = GameObject.Find("txt_correctpower").GetComponent<Text>();
+		overPowerUsageText = GameObject.Find("txt_overpower").GetComponent<Text>();
+		usage = GameObject.Find("txt_overall_evaluation").GetComponent<Text>();
+		moneyEarnedText = GameObject.Find("txt_money_earned").GetComponent<Text>();
+		energyProducedText = GameObject.Find("txt_energy_produced").GetComponent<Text>();
+
 		ConvertSecondToMin();
 		DisplayPlayerStatistics();
 	}
@@ -28,6 +41,11 @@ public class DisplayStatistics : MonoBehaviour {
 		correctPowerSec = PlayerStatistics.correctPowerSec%60;
 		overPowerMin = PlayerStatistics.overPowerSec/60;
 		overPowerSec = PlayerStatistics.overPowerSec%60;
+
+		moneyEarned = PlayerStatistics.moneyEarned;
+		energyProduced = Mathf.Round(PlayerStatistics.energyProduced*10)/10;
+
+
 	}
 	
 	void DisplayPlayerStatistics(){
@@ -36,6 +54,10 @@ public class DisplayStatistics : MonoBehaviour {
 		underPowerUsageText.text = "Under power :  " + underPowerMin.ToString() + " minutes and " + underPowerSec.ToString() + " seconds" ;
 		correctPowerUsageText.text = "Correct power :  " + correctPowerMin.ToString() + " minutes and " + correctPowerSec.ToString() + " seconds" ;
 		overPowerUsageText.text = "Over power :  " + overPowerMin.ToString() + " minutes and " + overPowerSec.ToString() + " seconds" ;
+
+		moneyEarnedText.text = "Money earned: $" + moneyEarned;
+
+		energyProducedText.text = "Energy produced: " + energyProduced + " MWh";
 
 		// set text msg based on power usage.
 		if (underPowerMin > correctPowerMin && underPowerMin > overPowerMin){
