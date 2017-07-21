@@ -42,8 +42,15 @@ public class TurbineInputManager : MonoBehaviour {
 		transparentMat = new Material (Shader.Find("Standard"));
 
 
-		defaultMat.CopyPropertiesFromMaterial( transform.Find ("Turbine_Fan").gameObject.GetComponent<Renderer>().material );
-
+		if (transform.Find ("Turbine_Fan"))   // old prefab
+			defaultMat.CopyPropertiesFromMaterial (transform.Find ("Turbine_Fan").gameObject.GetComponent<Renderer> ().material);
+		else {  // new prefab
+			foreach(Transform tr in transform){
+				if(tr.gameObject.tag == "producer_mesh"){
+					defaultMat.CopyPropertiesFromMaterial (tr.Find("Turbine_Fan").GetComponent<Renderer> ().material);		
+				}
+			}
+		}
 
 
 
