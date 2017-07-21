@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 7849872}
   - component: {fileID: 7849875}
   m_Layer: 0
-  m_Name: rewardCanvas
+  m_Name: canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1161,7 +1161,7 @@ GameObject:
   - component: {fileID: 2017143696}
   - component: {fileID: 2017143695}
   m_Layer: 0
-  m_Name: reward_camera
+  m_Name: camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

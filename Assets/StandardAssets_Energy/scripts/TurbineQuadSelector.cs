@@ -13,6 +13,7 @@ public class TurbineQuadSelector : MonoBehaviour {
 
 	private GameObject infoQuad;
 	private GameObject infoQuadText;
+	private Camera camera;
 
 	void Awake(){
 		InvokeRepeating("updateInfoText", 0,5);
@@ -21,16 +22,20 @@ public class TurbineQuadSelector : MonoBehaviour {
 	void Start () {
 		turbineInputManager = transform.GetComponentInParent<TurbineInputManager>();
 		turbineController = transform.GetComponentInParent<TurbineController>();
-		simulation  = GameObject.FindGameObjectsWithTag("terrain")[0].GetComponent<Simulation>();
+
+		if ( GameObject.FindGameObjectsWithTag("terrain").Length > 0) // in the case there is no terrain be safe
+			simulation  = GameObject.FindGameObjectsWithTag("terrain")[0].GetComponent<Simulation>();
 
 		infoQuad = transform.parent.Find("InfoQuad").gameObject;
 		infoQuadText = infoQuad.transform.Find("InfoQuadText").gameObject;
+
+		camera = GameObject.Find ("camera").GetComponent<Camera> ();
 
 		updateInfoText ();
 	}
 
 	void Update () {
-		infoQuad.transform.LookAt (GameObject.Find ("s1_Camera").GetComponent<Camera> ().transform.position);
+		infoQuad.transform.LookAt (camera.transform.position);
 	}
 
 

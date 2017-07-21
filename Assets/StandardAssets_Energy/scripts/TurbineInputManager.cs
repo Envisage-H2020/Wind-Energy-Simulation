@@ -59,7 +59,7 @@ public class TurbineInputManager : MonoBehaviour {
 
 
 		if (infoQuad)
-			infoQuad.transform.LookAt( GameObject.Find("s1_Camera").GetComponent<Camera>().transform.position);
+			infoQuad.transform.LookAt( GameObject.Find("camera").GetComponent<Camera>().transform.position);
 	}
 
 	//when user clicks the turbine.

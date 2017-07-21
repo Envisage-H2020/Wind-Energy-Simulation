@@ -7,17 +7,31 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/scenes/S_MainMenu.unity
+    guid: 5ee33ff654ca76440bfa3a0af72fb6be
   - enabled: 1
     path: Assets/scenes/S_Login.unity
+    guid: 79f371da973cc4e488f7a16867cf4d88
   - enabled: 1
     path: Assets/scenes/S_Help.unity
+    guid: 71fc2ea9454b92f40a446957b52d0605
   - enabled: 1
     path: Assets/scenes/S_1.unity
+    guid: 0af41f437a3309f40bb7b0ae76689549
   - enabled: 1
     path: Assets/scenes/S_Reward.unity
+    guid: 436a9e0c1ce70bd45b9bafc201f89f01
   - enabled: 1
     path: Assets/scenes/S_Credits.unity
+    guid: 203162f4534f0894e921fc9cda53c2e0
   - enabled: 1
     path: Assets/scenes/S_Settings.unity
+    guid: 6210ed30686749947beef543713e370d
+  - enabled: 0
+    path: Assets/scenes/not_for_direct_use/S_SceneSelector_prefab_generator.unity
+    guid: 3b55304a2d6778b499bba9b7ccd3c8fd
   - enabled: 1
     path: Assets/scenes/S_SceneSelector.unity
+    guid: b58f7f3efd33e494cb4fa668ba9fde2f
+  - enabled: 1
+    path: Assets/scenes/S_2.unity
+    guid: 02f0db8406ef0ca4db23332482e002df

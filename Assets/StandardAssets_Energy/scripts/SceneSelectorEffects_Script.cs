@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class SceneSelector : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
+public class SceneSelectorEffects_Script : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
 
 	RectTransform rt;
 	Button bt_scene;
