@@ -6,8 +6,6 @@ using goedle_sdk;
 
 public class TurbineInputManager : MonoBehaviour {
     
-
-
 	private Text popUpText;
 	private Image backgroundImage;
 	private TurbineController turbineController;
@@ -24,6 +22,7 @@ public class TurbineInputManager : MonoBehaviour {
 	Material transparentMat;
 
 	public Canvas PopUpCanvas;
+	GameObject turbine_Fan, turbine_Main;
 
     void Start(){
 
@@ -42,18 +41,23 @@ public class TurbineInputManager : MonoBehaviour {
 		transparentMat = new Material (Shader.Find("Standard"));
 
 
-		if (transform.Find ("Turbine_Fan"))   // old prefab
-			defaultMat.CopyPropertiesFromMaterial (transform.Find ("Turbine_Fan").gameObject.GetComponent<Renderer> ().material);
-		else {  // new prefab
-			foreach(Transform tr in transform){
-				if(tr.gameObject.tag == "producer_mesh"){
-					defaultMat.CopyPropertiesFromMaterial (tr.Find("Turbine_Fan").GetComponent<Renderer> ().material);		
+		Material original_material;
+
+
+		if (transform.Find ("Turbine_Fan")) {   // old prefab
+			turbine_Fan = transform.Find ("Turbine_Fan").gameObject;	
+			turbine_Main= transform.Find ("Turbine_Main").gameObject;	 
+		} else   // new prefab
+			foreach (Transform tr in transform)
+				if (tr.gameObject.tag == "producer_mesh") {
+					turbine_Fan = tr.Find ("Turbine_Fan").gameObject;
+					turbine_Main= tr.Find ("Turbine_Main").gameObject;	 
 				}
-			}
-		}
+				
 
 
-
+		original_material = turbine_Fan.GetComponent<Renderer> ().material;
+		defaultMat.CopyPropertiesFromMaterial (original_material);
 		highlightedMat.color = Color.cyan; 
 		transparentMat.color = Color.black;
 
@@ -89,8 +93,8 @@ public class TurbineInputManager : MonoBehaviour {
 	
 	//when mouse is hovered over a wind turbine the turbine is highlighted.
 	void HighlightTurbine(bool isDamaged){
-		gameObject.transform.Find("Turbine_Fan").GetComponent<Renderer>().material = displayPopUpText ? highlightedMat : (isDamaged ? transparentMat : defaultMat);
-		gameObject.transform.Find("Turbine_Main").GetComponent<Renderer>().material = displayPopUpText ? highlightedMat : (isDamaged ? transparentMat : defaultMat);
+		turbine_Fan.GetComponent<Renderer>().material = displayPopUpText ? highlightedMat : (isDamaged ? transparentMat : defaultMat);
+		turbine_Main.GetComponent<Renderer>().material = displayPopUpText ? highlightedMat : (isDamaged ? transparentMat : defaultMat);
 	}
 
 	//when mouse is over a wind turbine without being clicked.

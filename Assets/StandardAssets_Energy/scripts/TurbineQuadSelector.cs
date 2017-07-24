@@ -73,9 +73,18 @@ public class TurbineQuadSelector : MonoBehaviour {
 			gameObject.GetComponent<MeshRenderer> ().enabled = false;
 
 			// Enable the Visuals of the turbine
-			foreach (Transform child in transform.parent.gameObject.transform) 
-				if (child.gameObject.name == "Turbine_Fan" || child.gameObject.name == "Turbine_Main")
-						child.gameObject.GetComponent<Renderer> ().enabled = true;
+			foreach (Transform childtr in transform.parent.gameObject.transform) { 
+
+				if (childtr.gameObject.name == "Turbine_Fan" || childtr.gameObject.name == "Turbine_Main") // old prefab
+					childtr.gameObject.GetComponent<Renderer> ().enabled = true;
+
+
+				if (childtr.gameObject.tag == "producer_mesh") 
+					foreach (Transform tr2 in childtr)
+						if (tr2.gameObject.name == "Turbine_Fan" || tr2.gameObject.name == "Turbine_Main") // new prefab
+								tr2.gameObject.GetComponent<Renderer> ().enabled = true;
+
+			}
 
 			// Destroy Nearby turbine spots
 			float range = 3 * turbineController.turbineRotorSize;
