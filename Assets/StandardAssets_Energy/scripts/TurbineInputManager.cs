@@ -43,18 +43,11 @@ public class TurbineInputManager : MonoBehaviour {
 
 		Material original_material;
 
-
-		if (transform.Find ("Turbine_Fan")) {   // old prefab
-			turbine_Fan = transform.Find ("Turbine_Fan").gameObject;	
-			turbine_Main= transform.Find ("Turbine_Main").gameObject;	 
-		} else   // new prefab
-			foreach (Transform tr in transform)
-				if (tr.gameObject.tag == "producer_mesh") {
-					turbine_Fan = tr.Find ("Turbine_Fan").gameObject;
-					turbine_Main= tr.Find ("Turbine_Main").gameObject;	 
-				}
-				
-
+		foreach (Transform tr in transform)
+			if (tr.gameObject.tag == "producer_mesh") {
+				turbine_Fan = tr.Find ("Turbine_Fan").gameObject;
+				turbine_Main= tr.Find ("Turbine_Main").gameObject;	 
+			}
 
 		original_material = turbine_Fan.GetComponent<Renderer> ().material;
 		defaultMat.CopyPropertiesFromMaterial (original_material);

@@ -75,10 +75,6 @@ public class TurbineQuadSelector : MonoBehaviour {
 			// Enable the Visuals of the turbine
 			foreach (Transform childtr in transform.parent.gameObject.transform) { 
 
-				if (childtr.gameObject.name == "Turbine_Fan" || childtr.gameObject.name == "Turbine_Main") // old prefab
-					childtr.gameObject.GetComponent<Renderer> ().enabled = true;
-
-
 				if (childtr.gameObject.tag == "producer_mesh") 
 					foreach (Transform tr2 in childtr)
 						if (tr2.gameObject.name == "Turbine_Fan" || tr2.gameObject.name == "Turbine_Main") // new prefab

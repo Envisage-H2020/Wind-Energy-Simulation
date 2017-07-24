@@ -45,16 +45,9 @@ public class TurbineController : MonoBehaviour {
     void Start () {
 		inputManager = GetComponent<TurbineInputManager>();
 
-
-		if (transform.Find ("Turbine_Fan"))  // old prefab
-			turbineFan = transform.Find ("Turbine_Fan").transform.gameObject;
-		else { // new prefab
-			foreach (Transform tr in transform)
-				if (tr.gameObject.tag == "producer_mesh")
-					turbineFan = tr.Find ("Turbine_Fan").transform.gameObject;
-		}
-
-
+		foreach (Transform tr in transform) // new prefab
+			if (tr.gameObject.tag == "producer_mesh")
+				turbineFan = tr.Find ("Turbine_Fan").transform.gameObject;
 
 		simulation  = GameObject.FindGameObjectsWithTag("terrain")[0].GetComponent<Simulation>();
 

@@ -1,6 +1,6 @@
 # Blender v2.77 (sub 0) OBJ File: 'windturbine.blend'
 # www.blender.org
-mtllib windturbine.mtl
+mtllib windturbine60.mtl
 g Turbine_Main
 v 6.701194 -1.347988 -7.062705
 v 6.788754 -1.347985 -22.588549
@@ -3981,7 +3981,7 @@ vn -0.0082 0.9515 -0.3075
 vn -0.0050 0.5851 0.8109
 vn 0.0006 -0.5870 0.8096
 vn 0.0031 -0.9505 -0.3108
-usemtl turbmatMain
+usemtl turbmatMain60
 s off
 f 1/1/1 2/2/1 3/3/1
 f 3/3/2 4/4/2 1/1/2
@@ -7300,7 +7300,7 @@ vn -0.5129 -0.8584 0.0001
 vn -0.5129 -0.8585 0.0004
 vn -0.3625 -0.8585 -0.3628
 vn -0.3622 -0.8585 -0.3629
-usemtl turbmatFan
+usemtl turbmatFan60
 s off
 f 1109/1512/1361 1110/1513/1361 1111/1514/1361
 f 1111/1514/1361 1112/1515/1361 1109/1512/1361
