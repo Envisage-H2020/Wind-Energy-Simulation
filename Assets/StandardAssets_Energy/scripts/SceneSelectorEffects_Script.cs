@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using goedle_sdk;
 
 public class SceneSelectorEffects_Script : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
 
@@ -28,6 +29,8 @@ public class SceneSelectorEffects_Script : MonoBehaviour, IPointerEnterHandler, 
 			
 		bt_scene 		         = gameObject.transform.Find ("bt_scene").GetComponent<Button>();
 		txt_bt_scene_title       = gameObject.transform.Find ("bt_scene").gameObject.transform.Find ("txt_bt_scene_title").GetComponent<Text>();
+		// We have to talk about this tracking point
+		//GoedleAnalytics.track ("select.scene",txt_bt_scene_title.ToString());
 		txt_bt_scene_short_descr = gameObject.transform.Find ("bt_scene").gameObject.transform.Find ("txt_bt_scene_short_descr").GetComponent<Text>();
 	}
 

@@ -75,6 +75,13 @@ public class PlayerStatistics : MonoBehaviour {
 					overPowerSec++;
 				}
 			}
+			GoedleAnalytics.track ("submit.score","time_underpower",underPowerSec.ToString());
+			GoedleAnalytics.track ("submit.score","time_correctpower",correctPowerSec.ToString());
+			GoedleAnalytics.track ("submit.score","time_overpower",overPowerSec.ToString());
+			GoedleAnalytics.track ("submit.score","energyProduced",energyProduced.ToString());
+			GoedleAnalytics.track ("submit.score","moneyEarned",moneyEarned.ToString());
+			GoedleAnalytics.track ("submit.score","time_played",simulation.minutesCount.ToString());
+
 		}
 	}
 

@@ -32,6 +32,9 @@ public class TurbineInputManager : MonoBehaviour {
 		PopUpCanvas.gameObject.SetActive (true);
 		turbineController = GetComponent<TurbineController>();
 		InitializePopUpText();
+		GoedleAnalytics.track ("add.turbine");
+		// We have to talk about this tracking point
+		//GoedleAnalytics.track ("add.turbineDetailed",null,turbineController.turbineEnergyOutput.ToString());
 
 		infoQuad = transform.Find("InfoQuad").gameObject;
 		infoQuadText = infoQuad.transform.Find("InfoQuadText").gameObject;
