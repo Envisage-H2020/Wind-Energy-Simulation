@@ -842,6 +842,151 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 114822797867135186, guid: cddc7e0e3b6ab5340a00da10e23d3837,
+        type: 2}
+      propertyPath: turbineClass
+      value: B
+      objectReference: {fileID: 0}
+    - target: {fileID: 114822797867135186, guid: cddc7e0e3b6ab5340a00da10e23d3837,
+        type: 2}
+      propertyPath: turbineEnergyOutputProfile.Array.data[0]
+      value: 0.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 114822797867135186, guid: cddc7e0e3b6ab5340a00da10e23d3837,
+        type: 2}
+      propertyPath: turbineEnergyOutputProfile.Array.data[1]
+      value: 0.002
+      objectReference: {fileID: 0}
+    - target: {fileID: 114822797867135186, guid: cddc7e0e3b6ab5340a00da10e23d3837,
+        type: 2}
+      propertyPath: turbineEnergyOutputProfile.Array.data[2]
+      value: 0.003
+      objectReference: {fileID: 0}
+    - target: {fileID: 114822797867135186, guid: cddc7e0e3b6ab5340a00da10e23d3837,
+        type: 2}
+      propertyPath: turbineEnergyOutputProfile.Array.data[3]
+      value: 0.101
+      objectReference: {fileID: 0}
+    - target: {fileID: 114822797867135186, guid: cddc7e0e3b6ab5340a00da10e23d3837,
+        type: 2}
+      propertyPath: turbineEnergyOutputProfile.Array.data[4]
+      value: 0.202
+      objectReference: {fileID: 0}
+    - target: {fileID: 114822797867135186, guid: cddc7e0e3b6ab5340a00da10e23d3837,
+        type: 2}
+      propertyPath: turbineEnergyOutputProfile.Array.data[5]
+      value: 0.302
+      objectReference: {fileID: 0}
+    - target: {fileID: 114822797867135186, guid: cddc7e0e3b6ab5340a00da10e23d3837,
+        type: 2}
+      propertyPath: turbineEnergyOutputProfile.Array.data[6]
+      value: 0.402
+      objectReference: {fileID: 0}
+    - target: {fileID: 114822797867135186, guid: cddc7e0e3b6ab5340a00da10e23d3837,
+        type: 2}
+      propertyPath: turbineEnergyOutputProfile.Array.data[7]
+      value: 0.502
+      objectReference: {fileID: 0}
+    - target: {fileID: 114822797867135186, guid: cddc7e0e3b6ab5340a00da10e23d3837,
+        type: 2}
+      propertyPath: turbineEnergyOutputProfile.Array.data[8]
+      value: 0.602
+      objectReference: {fileID: 0}
+    - target: {fileID: 114822797867135186, guid: cddc7e0e3b6ab5340a00da10e23d3837,
+        type: 2}
+      propertyPath: turbineEnergyOutputProfile.Array.data[9]
+      value: 0.702
+      objectReference: {fileID: 0}
+    - target: {fileID: 114822797867135186, guid: cddc7e0e3b6ab5340a00da10e23d3837,
+        type: 2}
+      propertyPath: turbineEnergyOutputProfile.Array.data[10]
+      value: 0.802
+      objectReference: {fileID: 0}
+    - target: {fileID: 114822797867135186, guid: cddc7e0e3b6ab5340a00da10e23d3837,
+        type: 2}
+      propertyPath: turbineEnergyOutputProfile.Array.data[11]
+      value: 0.902
+      objectReference: {fileID: 0}
+    - target: {fileID: 114822797867135186, guid: cddc7e0e3b6ab5340a00da10e23d3837,
+        type: 2}
+      propertyPath: turbineEnergyOutputProfile.Array.data[12]
+      value: 1.003
+      objectReference: {fileID: 0}
+    - target: {fileID: 114822797867135186, guid: cddc7e0e3b6ab5340a00da10e23d3837,
+        type: 2}
+      propertyPath: turbineEnergyOutputProfile.Array.data[13]
+      value: 1.103
+      objectReference: {fileID: 0}
+    - target: {fileID: 114822797867135186, guid: cddc7e0e3b6ab5340a00da10e23d3837,
+        type: 2}
+      propertyPath: turbineEnergyOutputProfile.Array.data[14]
+      value: 1.203
+      objectReference: {fileID: 0}
+    - target: {fileID: 114822797867135186, guid: cddc7e0e3b6ab5340a00da10e23d3837,
+        type: 2}
+      propertyPath: turbineEnergyOutputProfile.Array.data[15]
+      value: 1.303
+      objectReference: {fileID: 0}
+    - target: {fileID: 114822797867135186, guid: cddc7e0e3b6ab5340a00da10e23d3837,
+        type: 2}
+      propertyPath: turbineEnergyOutputProfile.Array.data[16]
+      value: 1.403
+      objectReference: {fileID: 0}
+    - target: {fileID: 114822797867135186, guid: cddc7e0e3b6ab5340a00da10e23d3837,
+        type: 2}
+      propertyPath: turbineEnergyOutputProfile.Array.data[17]
+      value: 1.503
+      objectReference: {fileID: 0}
+    - target: {fileID: 114822797867135186, guid: cddc7e0e3b6ab5340a00da10e23d3837,
+        type: 2}
+      propertyPath: turbineEnergyOutputProfile.Array.data[18]
+      value: 1.603
+      objectReference: {fileID: 0}
+    - target: {fileID: 114822797867135186, guid: cddc7e0e3b6ab5340a00da10e23d3837,
+        type: 2}
+      propertyPath: turbineEnergyOutputProfile.Array.data[19]
+      value: 1.703
+      objectReference: {fileID: 0}
+    - target: {fileID: 114822797867135186, guid: cddc7e0e3b6ab5340a00da10e23d3837,
+        type: 2}
+      propertyPath: turbineEnergyOutputProfile.Array.data[20]
+      value: 1.803
+      objectReference: {fileID: 0}
+    - target: {fileID: 114822797867135186, guid: cddc7e0e3b6ab5340a00da10e23d3837,
+        type: 2}
+      propertyPath: turbineEnergyOutputProfile.Array.data[21]
+      value: 1.903
+      objectReference: {fileID: 0}
+    - target: {fileID: 114822797867135186, guid: cddc7e0e3b6ab5340a00da10e23d3837,
+        type: 2}
+      propertyPath: turbineEnergyOutputProfile.Array.data[22]
+      value: 2.004
+      objectReference: {fileID: 0}
+    - target: {fileID: 114822797867135186, guid: cddc7e0e3b6ab5340a00da10e23d3837,
+        type: 2}
+      propertyPath: turbineEnergyOutputProfile.Array.data[23]
+      value: 2.104
+      objectReference: {fileID: 0}
+    - target: {fileID: 114822797867135186, guid: cddc7e0e3b6ab5340a00da10e23d3837,
+        type: 2}
+      propertyPath: turbineEnergyOutputProfile.Array.data[24]
+      value: 2.204
+      objectReference: {fileID: 0}
+    - target: {fileID: 114822797867135186, guid: cddc7e0e3b6ab5340a00da10e23d3837,
+        type: 2}
+      propertyPath: turbineEnergyOutputProfile.Array.data[25]
+      value: 2.205
+      objectReference: {fileID: 0}
+    - target: {fileID: 114822797867135186, guid: cddc7e0e3b6ab5340a00da10e23d3837,
+        type: 2}
+      propertyPath: turbineEnergyOutputProfile.Array.data[26]
+      value: 2.206
+      objectReference: {fileID: 0}
+    - target: {fileID: 114822797867135186, guid: cddc7e0e3b6ab5340a00da10e23d3837,
+        type: 2}
+      propertyPath: turbineEnergyOutputProfile.Array.data[27]
+      value: 2.207
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cddc7e0e3b6ab5340a00da10e23d3837, type: 2}
   m_IsPrefabParent: 0
