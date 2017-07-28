@@ -57,7 +57,6 @@ public class TurbineQuadSelector : MonoBehaviour {
 		infoQuadText.GetComponent<MeshRenderer>().enabled = true;
 
 		if(Input.GetMouseButtonDown(0)){
-			GoedleAnalytics.track ("add.turbine");
 
 			simulation.totalIncome -= turbineController.turbineCost;
 
