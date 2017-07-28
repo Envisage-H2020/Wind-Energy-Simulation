@@ -58,6 +58,13 @@ public class TurbineQuadSelector : MonoBehaviour {
 
 		if(Input.GetMouseButtonDown(0)){
 
+			string turbine_name = transform.parent.gameObject.name;
+			// Marc: set an event here ti indicate: the user builds a turbine withe name turbine_name
+			
+			Debug.Log("I have build turbine: " + turbine_name);
+			
+		
+		
 			simulation.totalIncome -= turbineController.turbineCost;
 
 			turbineInputManager.PopUpCanvas.enabled = true;

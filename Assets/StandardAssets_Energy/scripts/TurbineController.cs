@@ -117,21 +117,35 @@ public class TurbineController : MonoBehaviour {
 	}
 
 	public void repairTurbine(){
+			
+		
 		//decreases total income
 		if(simulation.totalIncome >= 1){
 			simulation.totalIncome -= turbineRepairCost;
 			turbineRepair();
+		
+			// Marc : repair turbine event of turbine with name  : gameObject.name		
+			Debug.Log("I have repaired turbine" + gameObject.name);
+			
 			simulation.damagedTurbines--;
 		}
 	}
 
 	public void DisableTurbine(){
+		
+		// Marc : disable turbine event of turbine with name  : gameObject.name
+		Debug.Log("I have disabled turbine" + gameObject.name);
+		
 		//StartCoroutine(simulation.calculateSubstractedPower());
     	isRotating = false;
 		simulation.numberOfTurbinesOperating--;	
 	}
 
 	public void EnableTurbine(string who){
+		
+		// Marc : enable turbine event of turbine with name  : gameObject.name		
+		Debug.Log("I have enabled turbine" + gameObject.name);
+		
 		//used to display the numbers for the output values next to the minimap
 		//StartCoroutine(simulation.calculateAddedPower());
 		isRotating = true;
