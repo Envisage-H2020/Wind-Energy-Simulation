@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using goedle_sdk;
 
 public class TurbineController : MonoBehaviour {
 	
@@ -55,6 +56,8 @@ public class TurbineController : MonoBehaviour {
 		float startCall = damageStartTime; //Random.Range(0.0f,90.0f);
 		float rate = 1;       //Random.Range(120.0f,300.0f);
 		InvokeRepeating("CalculateDamagePropability",startCall,rate); 		//Calls the method for the first time in "startCall" with a repeat rate of the "rate" value.		 
+		GoedleAnalytics.track ("add.detailedturbine", gameObject.name,turbineEnergyOutput.ToString());
+
 	}
 
 
@@ -124,18 +127,17 @@ public class TurbineController : MonoBehaviour {
 			simulation.totalIncome -= turbineRepairCost;
 			turbineRepair();
 		
-			// Marc : repair turbine event of turbine with name  : gameObject.name		
 			Debug.Log("I have repaired turbine" + gameObject.name);
-			
+			GoedleAnalytics.track ("repair.turbine", gameObject.name);
 			simulation.damagedTurbines--;
 		}
 	}
 
 	public void DisableTurbine(){
 		
-		// Marc : disable turbine event of turbine with name  : gameObject.name
 		Debug.Log("I have disabled turbine" + gameObject.name);
-		
+		GoedleAnalytics.track ("disable.turbine", gameObject.name);
+
 		//StartCoroutine(simulation.calculateSubstractedPower());
     	isRotating = false;
 		simulation.numberOfTurbinesOperating--;	
@@ -143,9 +145,9 @@ public class TurbineController : MonoBehaviour {
 
 	public void EnableTurbine(string who){
 		
-		// Marc : enable turbine event of turbine with name  : gameObject.name		
 		Debug.Log("I have enabled turbine" + gameObject.name);
-		
+		GoedleAnalytics.track ("enable.turbine", gameObject.name);
+
 		//used to display the numbers for the output values next to the minimap
 		//StartCoroutine(simulation.calculateAddedPower());
 		isRotating = true;

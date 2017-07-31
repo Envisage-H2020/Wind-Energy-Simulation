@@ -32,7 +32,6 @@ public class TurbineInputManager : MonoBehaviour {
 		PopUpCanvas.gameObject.SetActive (true);
 		turbineController = GetComponent<TurbineController>();
 		InitializePopUpText();
-		GoedleAnalytics.track ("add.turbine");
 		// We have to talk about this tracking point
 		//GoedleAnalytics.track ("add.turbineDetailed",null,turbineController.turbineEnergyOutput.ToString());
 
@@ -75,13 +74,10 @@ public class TurbineInputManager : MonoBehaviour {
 		if (turbineController.isConstructed) {
 			if (turbineController.isRotating && !turbineController.isDamaged) {
 				turbineController.DisableTurbine ();
-				GoedleAnalytics.track ("disable.turbine");
 			} else if (!turbineController.isRotating && !turbineController.isDamaged) {
 				turbineController.EnableTurbine ("onTurbine");
-				GoedleAnalytics.track ("enable.turbine");
 			} else if (turbineController.isDamaged) {
 				turbineController.repairTurbine ();
-				GoedleAnalytics.track ("repair.turbine");
 			}
 		}
 	}

@@ -26,9 +26,9 @@ namespace goedle_sdk.detail
 				UnitySystemConsoleRedirector.Redirect();
 				// To Check Content before it is send
 				Console.WriteLine(pass[0]);
-			byte[] pData = Encoding.UTF8.GetBytes(pass[0].ToCharArray());
+				byte[] pData = Encoding.UTF8.GetBytes(pass[0].ToCharArray());
 
-			WWW www = new WWW(GoedleConstants.TRACK_URL, pData, headers);
+				//new WWW(GoedleConstants.TRACK_URL, pData, headers);
 		}
 }
 }
