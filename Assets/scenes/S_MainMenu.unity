@@ -1760,9 +1760,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b641ab8cd6194d7da1e51fef12eee7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  app_key: 
-  api_key: 
-  disable: To enable look at tracking_enabled field
+  app_key: 1
+  api_key: secret
+  disable: False
 --- !u!124 &1940476100
 Behaviour:
   m_ObjectHideFlags: 0

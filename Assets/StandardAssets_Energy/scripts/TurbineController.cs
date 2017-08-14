@@ -56,7 +56,7 @@ public class TurbineController : MonoBehaviour {
 		float startCall = damageStartTime; //Random.Range(0.0f,90.0f);
 		float rate = 1;       //Random.Range(120.0f,300.0f);
 		InvokeRepeating("CalculateDamagePropability",startCall,rate); 		//Calls the method for the first time in "startCall" with a repeat rate of the "rate" value.		 
-		GoedleAnalytics.track ("add.detailedturbine", gameObject.name,turbineEnergyOutput.ToString());
+		//GoedleAnalytics.track ("add.detailedturbine", gameObject.name,turbineEnergyOutput.ToString());
 
 	}
 
