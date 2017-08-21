@@ -60,7 +60,7 @@ public class TurbineQuadSelector : MonoBehaviour {
 
 			string turbine_name = transform.parent.gameObject.name;
 			// Marc: set an event here ti indicate: the user builds a turbine withe name turbine_name
-			
+			GoedleAnalytics.track ("add.detailedturbine", turbine_name );
 			Debug.Log("I have build turbine: " + turbine_name);
 			
 		
