@@ -15,9 +15,6 @@ EditorBuildSettings:
     path: Assets/scenes/S_Help.unity
     guid: 71fc2ea9454b92f40a446957b52d0605
   - enabled: 1
-    path: Assets/scenes/S_1.unity
-    guid: 0af41f437a3309f40bb7b0ae76689549
-  - enabled: 1
     path: Assets/scenes/S_Reward.unity
     guid: 436a9e0c1ce70bd45b9bafc201f89f01
   - enabled: 1
@@ -32,6 +29,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/scenes/S_SceneSelector.unity
     guid: b58f7f3efd33e494cb4fa668ba9fde2f
+  - enabled: 1
+    path: Assets/scenes/S_1.unity
+    guid: 0af41f437a3309f40bb7b0ae76689549
   - enabled: 1
     path: Assets/scenes/S_2.unity
     guid: 02f0db8406ef0ca4db23332482e002df
